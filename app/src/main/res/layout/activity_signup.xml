@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorMorado"
+    tools:context=".ui.SignUpActivity"
+    tools:layout_editor_absoluteY="25dp">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="285dp"
+        android:layout_height="158dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.434"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+
+    <EditText
+        android:id="@+id/editTextUsername"
+        android:layout_width="293dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorBlanco"
+        android:ems="10"
+        android:hint="@string/hint_username"
+        android:inputType="textPersonName"
+        android:textColor="@android:color/black"
+        android:textColorHighlight="@android:color/black"
+        android:textColorHint="@android:color/black"
+        android:textColorLink="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="293dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorBlanco"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColor="@android:color/black"
+        android:textColorHighlight="@android:color/black"
+        android:textColorHint="@android:color/black"
+        android:textColorLink="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextUsername"
+        tools:autoText="false" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="293dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="9dp"
+        android:background="@color/colorBlanco"
+        android:ems="10"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="false"
+        android:textColor="@android:color/black"
+        android:textColorHighlight="@android:color/black"
+        android:textColorHint="@android:color/black"
+        android:textColorLink="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+
+    <Button
+        android:id="@+id/buttonSignUp"
+        android:layout_width="293dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:backgroundTint="@color/colorAmarillo"
+        android:text="@string/btn_signup"
+        android:textColor="@android:color/white"
+        android:textColorHighlight="@android:color/black"
+        android:textColorHint="@android:color/black"
+        android:textColorLink="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.472"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+
+    <TextView
+        android:id="@+id/textViewGoLogin"
+        android:layout_width="298dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/text_go_login"
+        android:textColor="@android:color/white"
+        android:textColorHighlight="@android:color/black"
+        android:textColorHint="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSignUp"
+        tools:text="Si aún no tienes cuenta Registrate aquí" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="0dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorBlanco"
+        android:textColor="@android:color/black"
+        android:textColorHighlight="@android:color/black"
+        android:textColorHint="@android:color/black"
+        android:textColorLink="@android:color/black"
+        android:visibility="visible"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
+        app:layout_constraintVertical_bias="0.019" />
+
+
+
+</android.support.constraint.ConstraintLayout>

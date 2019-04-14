@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">MusicLoft</string>
+    <string name="btn_login">Iniciar Sesión</string>
+    <string name="text_create_account" />
+    <string name="text_go_login">Si ya dispone de una cuena, inicia sesón aqí</string>
+    <string name="btn_signup">Registrarme</string>
+    <string name="hint_username">Nombre de usuario</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="sexo_prompt">Elige Sexo</string>
+    <string name="country_prompt">Choose a country</string>
+    <string name="eligeSexo">eligeSexo</string>
+
+    <string-array name="eligeSexo">
+        <item>Hombre</item>
+        <item>Mujer</item>
+
+    </string-array>
+    <string name="title_activity_prueba">Prueba</string>
+    <string name="toolbar_title">Inicio</string>
+    <string name="toolbar_title_home">Inicio</string>
+
+
+</resources>

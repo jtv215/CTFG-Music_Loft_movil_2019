@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_arrow_back_black_24dp"
+        android:title="" />
+
+    <item
+        android:id="@+id/playList"
+        android:icon="@drawable/ic_playlist_play_black_24dp"
+        android:title="" />
+
+    <item
+        android:id="@+id/perfil"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:title="" />
+
+    <item
+        android:id="@+id/codigoqr"
+        android:icon="@drawable/ic_add_circle_black_24dp"
+        android:title="" />
+
+</menu>
