@@ -1,8 +1,10 @@
 package com.jefferson.musicloft.retrofit;
 
+import com.jefferson.musicloft.retrofit.request.RequestEstablecimiento;
 import com.jefferson.musicloft.retrofit.request.RequestSignup;
 import com.jefferson.musicloft.retrofit.request.RequestVotarCancion;
 import com.jefferson.musicloft.retrofit.response.ResponseCancion;
+import com.jefferson.musicloft.retrofit.response.ResponseMonedas;
 
 import java.util.List;
 
@@ -21,4 +23,9 @@ public interface AuthTMusicLoftService {
 
     @POST("votarCancion")
     Call<ResponseCancion> votarCancion(@Body RequestVotarCancion requestVotarCancion);
+
+    @POST("getMonedasUsuario")
+    Call<ResponseMonedas> getMonedasUsuario(@Body RequestEstablecimiento requestEstablecimiento);
+
+
 }

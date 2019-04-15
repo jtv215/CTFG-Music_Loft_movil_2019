@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,7 +33,7 @@ public class CancionListFragment extends Fragment {
     MyCancionRecyclerViewAdapter adapter;
     List<ResponseCancion> cancionList;
     MusicLoftViewModel musicLoftViewModel;
-
+    SwipeRefreshLayout swipeRefreshLayout;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -71,9 +72,19 @@ public class CancionListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cancion_list, container, false);
 
         // Set the adapter
-        if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            recyclerView  = (RecyclerView) view;
+            recyclerView  =  view.findViewById(R.id.list);
+
+            swipeRefreshLayout = view.findViewById(R.id.swiperefreshlayout);
+            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    swipeRefreshLayout.setRefreshing(true);
+                    swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorAmarillo));
+                    cargarNewData();
+                }
+            });
+
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -87,7 +98,7 @@ public class CancionListFragment extends Fragment {
             cargarDataAdapter();
 
 
-        }
+
         return view;
     }
 
@@ -100,7 +111,23 @@ public class CancionListFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<ResponseCancion> responseCancions) {
                 cancionList = responseCancions;
+
                 adapter.setData(cancionList);
+            }
+        });
+    }
+
+    private void cargarNewData() {
+
+//Observer esta pendiente de los cambios
+        musicLoftViewModel.getNewCanciones().observe(getActivity(), new Observer<List<ResponseCancion>>() {
+            @Override
+            public void onChanged(@Nullable List<ResponseCancion> responseCancions) {
+                cancionList = responseCancions;
+                swipeRefreshLayout.setRefreshing(false);
+                adapter.setData(cancionList);
+                //Elimina este observador para no llamar dos veces al servidor
+                musicLoftViewModel.getNewCanciones().removeObserver(this);
             }
         });
     }

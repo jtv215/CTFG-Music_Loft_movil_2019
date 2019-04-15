@@ -2,13 +2,17 @@ package com.jefferson.musicloft.data;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jefferson.musicloft.R;
 import com.jefferson.musicloft.common.MyApp;
 import com.jefferson.musicloft.retrofit.AuthMusicLoftClient;
 import com.jefferson.musicloft.retrofit.AuthTMusicLoftService;
+import com.jefferson.musicloft.retrofit.request.RequestEstablecimiento;
 import com.jefferson.musicloft.retrofit.request.RequestVotarCancion;
 import com.jefferson.musicloft.retrofit.response.ResponseCancion;
+import com.jefferson.musicloft.retrofit.response.ResponseMonedas;
 
 import java.io.Console;
 import java.util.ArrayList;
@@ -25,11 +29,14 @@ public class MusicLoftRepository {
     AuthMusicLoftClient authMusicLoftClient;
     //esta lista notificará al view model que hay un cambio.
     MutableLiveData<List<ResponseCancion>> allCanciones;
+
+
     //mutable nos permite hacer cambios.
     public MusicLoftRepository(){
         authMusicLoftClient = AuthMusicLoftClient.getInstance();
         authTMusicLoftService = authMusicLoftClient.getAuthMusicLoftService();
         allCanciones = getAllCanciones(); //si se modifica la lista cuando se invoca este metodo **
+
     }
 
 
@@ -98,5 +105,43 @@ public class MusicLoftRepository {
     }
 
 
+    public ResponseMonedas getMonedasUsuario(String idEstablecimiento){
+final  ResponseMonedas responseMonedas= new ResponseMonedas();
+        RequestEstablecimiento requestEstablecimiento = new RequestEstablecimiento(idEstablecimiento);
+
+      Call<ResponseMonedas> call = authTMusicLoftService.getMonedasUsuario(requestEstablecimiento);
+      call.request().body().toString();
+
+        call.enqueue(new Callback<ResponseMonedas>() {
+            @Override
+            public void onResponse(Call<ResponseMonedas> call, Response<ResponseMonedas> response) {
+
+                if(response.isSuccessful()){
+                    Toast.makeText(MyApp.geContext(), "11111", Toast.LENGTH_SHORT).show();
+
+                    responseMonedas.setCode(response.body().getCode());
+                    responseMonedas.setStatus(response.body().getStatus());
+                    responseMonedas.setMonedas(response.body().getMonedas());
+
+
+                    Log.e("errrrrrrrorrr22222 ","establecimiento444: "+responseMonedas.getMonedas());
+
+                }else{
+                    Toast.makeText(MyApp.geContext(), "No tienes cuenta en el local", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseMonedas> call, Throwable t) {
+                Toast.makeText(MyApp.geContext(),"Problemas de Conexión, Inténtelo de nuevo",Toast.LENGTH_SHORT).show();
+            }
+
+
+        });
+        return   responseMonedas;
+
+    }
 
 }

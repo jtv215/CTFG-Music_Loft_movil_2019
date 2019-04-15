@@ -1,18 +1,28 @@
 package com.jefferson.musicloft.ui;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jefferson.musicloft.R;
+import com.jefferson.musicloft.data.MusicLoftViewModel;
+import com.jefferson.musicloft.retrofit.response.ResponseMonedas;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    private TextView inicio;
+    TextView nombreLocal,puntos;
+    Toolbar toolbar;
+    ImageView fotoPerfil;
+    MusicLoftViewModel musicLoftViewModel;
+    String monedas;
+    ResponseMonedas responseMonedas;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -37,19 +47,25 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        getSupportActionBar().hide();
+        findViewById();
+        musicLoftViewModel = ViewModelProviders.of(this)
+                .get(MusicLoftViewModel.class);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        TextView inicio = findViewById(R.id.inicioDashboard);
-        inicio.setText("Jefferson");
-       // setSupportActionBar(toolbar);
-       getSupportActionBar().hide();
+        ResponseMonedas responseMonedas=  musicLoftViewModel.getMonedasUsuario("1");
+        puntos.setText(responseMonedas.getMonedas());
 
-
-
-      //  inicio = (TextView) findViewById(R.id.inicioDashboard);
-
+        cargardatos();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    private void cargardatos() {
+
+        nombreLocal.setText("Jefferson22");
+
+
+
 
         //llama al cancion listFragment para cargar la lista
         getSupportFragmentManager()
@@ -57,6 +73,16 @@ public class DashboardActivity extends AppCompatActivity {
                 .add(R.id.fragmentContainer,new CancionListFragment())
                 .commit();
 
+
+
     }
 
+
+    private void findViewById() {
+        toolbar = findViewById(R.id.toolbar);
+        nombreLocal = findViewById(R.id.nombreLocalID);
+        puntos = findViewById(R.id.puntosID);
+        fotoPerfil = findViewById(R.id.fotoPerfilID);
+
+    }
 }
