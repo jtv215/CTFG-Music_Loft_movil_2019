@@ -1,11 +1,14 @@
 package com.jefferson.musicloft.ui;
 
+import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +22,7 @@ import com.jefferson.musicloft.R;
 import com.jefferson.musicloft.common.MyApp;
 import com.jefferson.musicloft.data.MusicLoftViewModel;
 import com.jefferson.musicloft.retrofit.response.ResponseCancion;
+import com.jefferson.musicloft.retrofit.response.ResponseMonedas;
 
 import java.util.List;
 
@@ -29,6 +33,7 @@ public class VotarCancionDialogFragment extends DialogFragment {
     Button cerrar,botonVotar;
     MusicLoftViewModel musicLoftViewModel;
     String idCancion2,idLocal2;
+
 
     @Nullable
     @Override
@@ -65,6 +70,8 @@ public class VotarCancionDialogFragment extends DialogFragment {
 
         });
 
+
+
          //Recibir datos
         String titulo2 = this.getArguments().getString("titulo");
         String artista2 = this.getArguments().getString("artista");
@@ -98,6 +105,13 @@ public class VotarCancionDialogFragment extends DialogFragment {
             .of(getActivity()).get(MusicLoftViewModel.class);
         //Toast.makeText(MyApp.geContext(), "idLocal"+idLocal2+ "idCANCION"+idCancion2, Toast.LENGTH_SHORT).show();
         musicLoftViewModel.votarCancion(idLocal2,idCancion2);
+
+       //LLAMAS Al textview de otra activity
+        TextView puntos= (TextView)((Activity)getActivity()).findViewById(R.id.puntosID);
+        ResponseMonedas responseMonedas=  musicLoftViewModel.getMonedasUsuario("1", puntos);
+
     }
+
+
 
 }

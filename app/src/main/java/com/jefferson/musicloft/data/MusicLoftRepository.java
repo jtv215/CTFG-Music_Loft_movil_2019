@@ -105,39 +105,33 @@ public class MusicLoftRepository {
     }
 
 
-    public ResponseMonedas getMonedasUsuario(String idEstablecimiento){
-final  ResponseMonedas responseMonedas= new ResponseMonedas();
-        RequestEstablecimiento requestEstablecimiento = new RequestEstablecimiento(idEstablecimiento);
+    public ResponseMonedas getMonedasUsuario(String idEstablecimiento, final TextView puntos ){
 
-      Call<ResponseMonedas> call = authTMusicLoftService.getMonedasUsuario(requestEstablecimiento);
-      call.request().body().toString();
+        final  ResponseMonedas responseMonedas= new ResponseMonedas();
+        Call<ResponseMonedas> call = authTMusicLoftService.getMonedasUsuario(idEstablecimiento);
+         //call.request().body().toString();
 
         call.enqueue(new Callback<ResponseMonedas>() {
             @Override
             public void onResponse(Call<ResponseMonedas> call, Response<ResponseMonedas> response) {
 
                 if(response.isSuccessful()){
-                    Toast.makeText(MyApp.geContext(), "11111", Toast.LENGTH_SHORT).show();
 
                     responseMonedas.setCode(response.body().getCode());
                     responseMonedas.setStatus(response.body().getStatus());
                     responseMonedas.setMonedas(response.body().getMonedas());
-
-
-                    Log.e("errrrrrrrorrr22222 ","establecimiento444: "+responseMonedas.getMonedas());
+                    puntos.setText(responseMonedas.getMonedas());
+                    Log.e("errrrrrrrorrr22222 ","Repositoru: "+responseMonedas.getMonedas());
 
                 }else{
                     Toast.makeText(MyApp.geContext(), "No tienes cuenta en el local", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
 
             @Override
             public void onFailure(Call<ResponseMonedas> call, Throwable t) {
                 Toast.makeText(MyApp.geContext(),"Problemas de Conexión, Inténtelo de nuevo",Toast.LENGTH_SHORT).show();
             }
-
 
         });
         return   responseMonedas;

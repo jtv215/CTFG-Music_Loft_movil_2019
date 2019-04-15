@@ -21,7 +21,6 @@ public class DashboardActivity extends AppCompatActivity {
     Toolbar toolbar;
     ImageView fotoPerfil;
     MusicLoftViewModel musicLoftViewModel;
-    String monedas;
     ResponseMonedas responseMonedas;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -47,42 +46,36 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        getSupportActionBar().hide();
-        findViewById();
         musicLoftViewModel = ViewModelProviders.of(this)
                 .get(MusicLoftViewModel.class);
-
-        ResponseMonedas responseMonedas=  musicLoftViewModel.getMonedasUsuario("1");
-        puntos.setText(responseMonedas.getMonedas());
-
+        getSupportActionBar().hide();
+        findViewById();
         cargardatos();
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-    }
-
-    private void cargardatos() {
-
-        nombreLocal.setText("Jefferson22");
-
-
-
-
-        //llama al cancion listFragment para cargar la lista
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.fragmentContainer,new CancionListFragment())
-                .commit();
-
-
 
     }
-
 
     private void findViewById() {
         toolbar = findViewById(R.id.toolbar);
         nombreLocal = findViewById(R.id.nombreLocalID);
         puntos = findViewById(R.id.puntosID);
         fotoPerfil = findViewById(R.id.fotoPerfilID);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    private void cargardatos() {
+        nombreLocal.setText("Jefferson22");
+        //llama al cancion listFragment para cargar la lista de canciones
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragmentContainer,new CancionListFragment())
+                .commit();
+
+        responseMonedas=  musicLoftViewModel.getMonedasUsuario("1", puntos);
+
+
 
     }
+
+
 }

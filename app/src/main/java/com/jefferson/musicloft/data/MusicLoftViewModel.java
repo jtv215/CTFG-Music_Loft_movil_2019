@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.jefferson.musicloft.retrofit.response.ResponseCancion;
 import com.jefferson.musicloft.retrofit.response.ResponseMonedas;
@@ -43,11 +44,10 @@ public class MusicLoftViewModel extends AndroidViewModel {
         musicLoftRepository.votarCancion(idLocal, idCancion);
     }
 
-    public ResponseMonedas getMonedasUsuario(String idEstablecimiento) {
-        return  musicLoftRepository.getMonedasUsuario(idEstablecimiento);
-
-
+    public ResponseMonedas getMonedasUsuario(String idEstablecimiento, TextView puntos ) {
+        return musicLoftRepository.getMonedasUsuario(idEstablecimiento, puntos);
     }
+
 
 }
 

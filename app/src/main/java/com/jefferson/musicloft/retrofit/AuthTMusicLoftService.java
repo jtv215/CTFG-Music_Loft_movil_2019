@@ -14,6 +14,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface AuthTMusicLoftService {
 
@@ -24,8 +25,6 @@ public interface AuthTMusicLoftService {
     @POST("votarCancion")
     Call<ResponseCancion> votarCancion(@Body RequestVotarCancion requestVotarCancion);
 
-    @POST("getMonedasUsuario")
-    Call<ResponseMonedas> getMonedasUsuario(@Body RequestEstablecimiento requestEstablecimiento);
-
-
+    @GET("getMonedasUsuario/{idEstablecimiento}")
+    Call<ResponseMonedas> getMonedasUsuario(@Path("idEstablecimiento") String idEstablecimiento);
 }
