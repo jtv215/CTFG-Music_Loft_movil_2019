@@ -31,12 +31,10 @@ public class DashboardActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     return true;
-                case R.id.playList:
-                    return true;
-                case R.id.perfil:
-                    return true;
                 case R.id.codigoqr:
-                   return  true;
+
+
+                    return  true;
             }
             return false;
         }
@@ -64,7 +62,7 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void cargardatos() {
-        nombreLocal.setText("Jefferson22");
+        nombreLocal.setText("Clasica");
         //llama al cancion listFragment para cargar la lista de canciones
         getSupportFragmentManager()
                 .beginTransaction()
