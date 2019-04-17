@@ -71,8 +71,7 @@ public class DashboardActivity extends AppCompatActivity {
         usuLocalViewModel = ViewModelProviders.of(this)
                 .get(UsuLocalViewModel.class);
         //Cuando se tenga la pantalla de seleccionar local:
-        SharedPreferencedManager.setSomeStringValue(Constantes.PREF_ESTABLECIMIENTO,"1");
-        SharedPreferencedManager.setSomeStringValue(Constantes.PREF_NOMBRELOCAL,"Local");
+
 
 
         findViewById();

@@ -12,6 +12,7 @@ import com.jefferson.musicloft.retrofit.AuthMusicLoftClient;
 import com.jefferson.musicloft.retrofit.AuthTMusicLoftService;
 import com.jefferson.musicloft.retrofit.request.RequestVotarCancion;
 import com.jefferson.musicloft.retrofit.response.ResponseCancion;
+import com.jefferson.musicloft.retrofit.response.ResponseEstablecimiento;
 import com.jefferson.musicloft.retrofit.response.ResponseMonedas;
 
 import java.util.List;
