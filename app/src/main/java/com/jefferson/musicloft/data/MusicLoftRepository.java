@@ -37,10 +37,12 @@ public class MusicLoftRepository {
         authTMusicLoftService = authMusicLoftClient.getAuthMusicLoftService();
         allCanciones = getAllCanciones(); //si se modifica la lista cuando se invoca este metodo **
 
+
+
     }
 
 
-    /*Devuelve una lista de canciones*/
+
     public MutableLiveData<List<ResponseCancion >> getAllCanciones(){
         //MutableLiveData es una variable que se puede ir modificando en el tiempo
             if(allCanciones == null){
@@ -53,7 +55,6 @@ public class MusicLoftRepository {
             @Override
             public void onResponse(Call<List<ResponseCancion>> call, Response<List<ResponseCancion>> response) {
                 if(response.isSuccessful()){
-                    //allCanciones = response.body();
                     allCanciones.setValue(response.body());
 
                 }else{
@@ -74,68 +75,34 @@ public class MusicLoftRepository {
 
 
 
-    public void votarCancion(String idLocal, String idCancion){
+    public void votarCancion(String idEstablecimiento, String idCancion, final TextView cantidadSeleccionada, final TextView puntosTotales){
 
-        RequestVotarCancion requestVotarCancion = new RequestVotarCancion(idLocal,idCancion);
-
-        Call<ResponseCancion> call = authTMusicLoftService.votarCancion(requestVotarCancion);
-        call.request().body().toString();
+        Call<ResponseCancion> call = authTMusicLoftService.votarCancion(idEstablecimiento,idCancion);
+       // call.request().body().toString();
 
         call.enqueue(new Callback<ResponseCancion>() {
             @Override
             public void onResponse(Call<ResponseCancion> call, Response<ResponseCancion> response) {
 
-
                 if(response.isSuccessful()){
+
+                    cantidadSeleccionada.setText(response.body().getCantidadSeleccionada());
+                    puntosTotales.setText(response.body().getPrecioTotal());
                    getAllCanciones();
 
                 }else{
+                    getAllCanciones();
                     Toast.makeText(MyApp.geContext(), "No tienes suficientes puntos", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseCancion> call, Throwable t) {
-              //  Toast.makeText(MyApp.geContext(),"Problemas de Conexión, Inténtelo de nuevo",Toast.LENGTH_SHORT).show();
-                getAllCanciones();
-
+               Toast.makeText(MyApp.geContext(),"Problemas de Conexión, Inténtelo de nuevo",Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
-
-    public ResponseMonedas getMonedasUsuario(String idEstablecimiento, final TextView puntos ){
-
-        final  ResponseMonedas responseMonedas= new ResponseMonedas();
-        Call<ResponseMonedas> call = authTMusicLoftService.getMonedasUsuario(idEstablecimiento);
-         //call.request().body().toString();
-
-        call.enqueue(new Callback<ResponseMonedas>() {
-            @Override
-            public void onResponse(Call<ResponseMonedas> call, Response<ResponseMonedas> response) {
-
-                if(response.isSuccessful()){
-
-                    responseMonedas.setCode(response.body().getCode());
-                    responseMonedas.setStatus(response.body().getStatus());
-                    responseMonedas.setMonedas(response.body().getMonedas());
-                    puntos.setText(responseMonedas.getMonedas());
-                    Log.e("errrrrrrrorrr22222 ","Repositoru: "+responseMonedas.getMonedas());
-
-                }else{
-                    Toast.makeText(MyApp.geContext(), "No tienes cuenta en el local", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseMonedas> call, Throwable t) {
-                Toast.makeText(MyApp.geContext(),"Problemas de Conexión, Inténtelo de nuevo",Toast.LENGTH_SHORT).show();
-            }
-
-        });
-        return   responseMonedas;
-
-    }
 
 }

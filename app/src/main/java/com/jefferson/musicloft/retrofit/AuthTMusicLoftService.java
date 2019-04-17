@@ -22,9 +22,12 @@ public interface AuthTMusicLoftService {
     @GET("cargarCanciones")
     Call<List<ResponseCancion>> cargarCanciones();
 
-    @POST("votarCancion")
-    Call<ResponseCancion> votarCancion(@Body RequestVotarCancion requestVotarCancion);
+    @GET("votarCancion/{idEstablecimiento}/{idCancion}")
+    Call<ResponseCancion> votarCancion(@Path("idEstablecimiento") String idEstablecimiento, @Path("idCancion") String idCancion);
 
-    @GET("getMonedasUsuario/{idEstablecimiento}")
-    Call<ResponseMonedas> getMonedasUsuario(@Path("idEstablecimiento") String idEstablecimiento);
+    @GET("getPuntosUsuario/{idEstablecimiento}")
+    Call<ResponseMonedas> getPuntosUsuario(@Path("idEstablecimiento") String idEstablecimiento);
+
+    @GET("addPuntos/{idEstablecimiento}/{codigoQR}")
+    Call<ResponseMonedas> addPuntos(@Path("idEstablecimiento") String idEstablecimiento,@Path("codigoQR") String codigoQR);
 }

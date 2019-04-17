@@ -15,14 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.login.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.SignUpActivity">
+        <activity android:name=".ui.login.SignUpActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,8 +31,8 @@
         </activity>
         <activity
             android:name=".ui.DashboardActivity"
-            android:label="@string/title_activity_dashboard" />
-        <activity android:name=".ui.CodigoQR"  android:exported="true"></activity>
+            android:label="@string/title_activity_dashboard"   android:exported="true"/>
+        <activity android:name=".ui.codigoQr.CodigoQR"  android:exported="true"></activity>
     </application>
 
 </manifest>

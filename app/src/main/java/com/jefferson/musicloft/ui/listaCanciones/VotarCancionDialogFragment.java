@@ -1,30 +1,26 @@
-package com.jefferson.musicloft.ui;
+package com.jefferson.musicloft.ui.listaCanciones;
 
 import android.app.Activity;
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.jefferson.musicloft.R;
 import com.jefferson.musicloft.common.MyApp;
+import com.jefferson.musicloft.common.SharedPreferencedManager;
 import com.jefferson.musicloft.data.MusicLoftViewModel;
-import com.jefferson.musicloft.retrofit.response.ResponseCancion;
-import com.jefferson.musicloft.retrofit.response.ResponseMonedas;
+import com.jefferson.musicloft.data.UsuLocalViewModel;
+import com.jefferson.musicloft.ui.DashboardActivity;
 
-import java.util.List;
 
 public class VotarCancionDialogFragment extends DialogFragment {
 
@@ -33,7 +29,7 @@ public class VotarCancionDialogFragment extends DialogFragment {
     Button cerrar,botonVotar;
     MusicLoftViewModel musicLoftViewModel;
     String idCancion2,idLocal2;
-
+    UsuLocalViewModel usuLocalViewModel;
 
     @Nullable
     @Override
@@ -42,7 +38,8 @@ public class VotarCancionDialogFragment extends DialogFragment {
          super.onCreateView(inflater, container, savedInstanceState);
         musicLoftViewModel = ViewModelProviders.of(getActivity())
                 .get(MusicLoftViewModel.class);
-
+        usuLocalViewModel = ViewModelProviders.of(this)
+                .get(UsuLocalViewModel.class);
          View view = inflater.inflate(R.layout.votar_dialog,container,false);
          titulo = view.findViewById(R.id.DtituloCancionID);
          artista = view.findViewById(R.id.DartistaID);
@@ -101,14 +98,20 @@ public class VotarCancionDialogFragment extends DialogFragment {
     }
 
     private void votar() {
-        MusicLoftViewModel musicLoftViewModel = ViewModelProviders
-            .of(getActivity()).get(MusicLoftViewModel.class);
-        //Toast.makeText(MyApp.geContext(), "idLocal"+idLocal2+ "idCANCION"+idCancion2, Toast.LENGTH_SHORT).show();
-        musicLoftViewModel.votarCancion(idLocal2,idCancion2);
+
+
+       musicLoftViewModel.votarCancion(idLocal2,idCancion2,cantidadSeleccionada,puntosTotales);
 
        //LLAMAS Al textview de otra activity
-        TextView puntos= (TextView)((Activity)getActivity()).findViewById(R.id.puntosID);
-        ResponseMonedas responseMonedas=  musicLoftViewModel.getMonedasUsuario("1", puntos);
+        //TextView puntos= (TextView)((Activity)getActivity()).findViewById(R.id.puntosID);
+        usuLocalViewModel.getPuntosUsuario2(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"),
+                (TextView)((Activity)getActivity()).findViewById(R.id.puntosID)
+                );
+
+
+
+
+
 
     }
 

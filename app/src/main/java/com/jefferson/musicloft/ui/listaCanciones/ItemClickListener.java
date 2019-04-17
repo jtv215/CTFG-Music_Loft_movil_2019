@@ -1,4 +1,4 @@
-package com.jefferson.musicloft.ui;
+package com.jefferson.musicloft.ui.listaCanciones;
 
 public interface ItemClickListener {
 

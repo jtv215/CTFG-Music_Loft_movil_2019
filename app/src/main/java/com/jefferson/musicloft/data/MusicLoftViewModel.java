@@ -34,20 +34,14 @@ public class MusicLoftViewModel extends AndroidViewModel {
 
     public LiveData<List<ResponseCancion>> getNewCanciones(){
         canciones = musicLoftRepository.getAllCanciones();
-
         return canciones;
     }
 
 
-    public  void votarCancion(String idLocal, String idCancion){
+    public  void votarCancion(String idLocal, String idCancion,TextView cantidadSeleccionada, TextView puntosTotales){
         canciones =musicLoftRepository.getAllCanciones();
-        musicLoftRepository.votarCancion(idLocal, idCancion);
+        musicLoftRepository.votarCancion(idLocal, idCancion,cantidadSeleccionada,puntosTotales);
     }
-
-    public ResponseMonedas getMonedasUsuario(String idEstablecimiento, TextView puntos ) {
-        return musicLoftRepository.getMonedasUsuario(idEstablecimiento, puntos);
-    }
-
 
 }
 

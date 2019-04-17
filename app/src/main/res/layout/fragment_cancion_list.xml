@@ -6,7 +6,7 @@
     android:name="com.jefferson.musicloft.ui.CancionListFragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.CancionListFragment">
+    tools:context=".ui.listaCanciones.CancionListFragment">
 
     <android.support.v7.widget.RecyclerView
     android:id="@+id/list"

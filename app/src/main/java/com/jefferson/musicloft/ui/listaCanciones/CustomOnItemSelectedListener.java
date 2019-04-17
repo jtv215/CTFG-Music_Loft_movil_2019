@@ -1,8 +1,7 @@
-package com.jefferson.musicloft.ui;
+package com.jefferson.musicloft.ui.listaCanciones;
 
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
 
 public class CustomOnItemSelectedListener implements android.widget.AdapterView.OnItemSelectedListener {

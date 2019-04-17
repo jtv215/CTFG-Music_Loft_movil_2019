@@ -1,4 +1,4 @@
-package com.jefferson.musicloft.ui;
+package com.jefferson.musicloft.ui.login;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +16,7 @@ import com.jefferson.musicloft.retrofit.MusicLoftClient;
 import com.jefferson.musicloft.retrofit.MusicLoftService;
 import com.jefferson.musicloft.retrofit.request.RequestLogin;
 import com.jefferson.musicloft.retrofit.response.ResponseAuth;
+import com.jefferson.musicloft.ui.DashboardActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;

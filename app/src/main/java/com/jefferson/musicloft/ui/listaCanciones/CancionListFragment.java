@@ -1,4 +1,4 @@
-package com.jefferson.musicloft.ui;
+package com.jefferson.musicloft.ui.listaCanciones;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;

@@ -10,6 +10,9 @@ public class Constantes {
     public static final String  PREF_CORREO = "PREF_CORREO";
     public static final String  PREF_CONTRASENA = "PREF_CONTRASENA";
     public static final String  PREF_SEXO = "PREF_SEXO";
+    public static final String  PREF_ESTABLECIMIENTO = "PREF_ESTABLECIMIENTO";
+    public static final String  PREF_PUNTOS = "PREF_PUNTOS";
+    public static final String  PREF_NOMBRELOCAL = "PREF_NOMBRELOCAL";
 
 
 }
