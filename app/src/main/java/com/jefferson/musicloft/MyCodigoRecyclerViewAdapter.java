@@ -7,9 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.jefferson.musicloft.CodigoListFragment.OnListFragmentInteractionListener;
-import com.jefferson.musicloft.retrofit.response.ResponseCancion;
+import com.bumptech.glide.Glide;
 import com.jefferson.musicloft.retrofit.response.ResponseCodigoQR;
 
 
@@ -18,7 +16,7 @@ import java.util.List;
 
 public class MyCodigoRecyclerViewAdapter extends RecyclerView.Adapter<MyCodigoRecyclerViewAdapter.ViewHolder> {
 
-    private final List<ResponseCodigoQR> mValues;
+    private List<ResponseCodigoQR> mValues;
     private Context ctx;
 
     public MyCodigoRecyclerViewAdapter(Context context,List<ResponseCodigoQR> items) {
@@ -36,25 +34,38 @@ public class MyCodigoRecyclerViewAdapter extends RecyclerView.Adapter<MyCodigoRe
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
+        if(mValues!=null){
+
+        holder.mItem = mValues.get(position);
+
+        holder.textPuntos.setText(holder.mItem.getPrecio()+" Puntos");
+        String foto = holder.mItem.getUrl();
+            if(!foto.equals("")){
+                Glide.with(ctx)
+                        .load(foto)
+                        .into(holder.imagenQR);
             }
-        });
+        }
+
+    }
+
+    public void setData(List<ResponseCodigoQR> codigoQRS){
+        this.mValues = codigoQRS;
+        notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+
+        if(mValues!= null){
+            return mValues.size();
+        }
+        else {
+            return 0;
+        }
+
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

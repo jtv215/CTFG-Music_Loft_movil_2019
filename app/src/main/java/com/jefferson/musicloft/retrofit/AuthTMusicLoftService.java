@@ -5,6 +5,7 @@ import com.jefferson.musicloft.retrofit.request.RequestSignup;
 import com.jefferson.musicloft.retrofit.request.RequestVotarCancion;
 import com.jefferson.musicloft.retrofit.response.EstablecimientoRespuesta;
 import com.jefferson.musicloft.retrofit.response.ResponseCancion;
+import com.jefferson.musicloft.retrofit.response.ResponseCodigoQR;
 import com.jefferson.musicloft.retrofit.response.ResponseEstablecimiento;
 import com.jefferson.musicloft.retrofit.response.ResponseMonedas;
 
@@ -35,4 +36,7 @@ public interface AuthTMusicLoftService {
 
     @GET("cargarEstablecimientos")
     Call<List<ResponseEstablecimiento>> cargarEstablecimientos();
+
+    @GET("cargarlistaCodigoQR/{idEstablecimiento}")
+    Call<List<ResponseCodigoQR>> cargarlistaCodigoQR(@Path("idEstablecimiento") String idEstablecimiento);
 }

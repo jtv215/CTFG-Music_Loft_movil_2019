@@ -1,7 +1,10 @@
 package com.jefferson.musicloft;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,12 +12,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import com.jefferson.musicloft.dummy.DummyContent;
-import com.jefferson.musicloft.dummy.DummyContent.DummyItem;
+import com.jefferson.musicloft.common.MyApp;
+import com.jefferson.musicloft.common.SharedPreferencedManager;
+import com.jefferson.musicloft.data.CodigoQRViewModel;
+import com.jefferson.musicloft.retrofit.AuthMusicLoftClient;
 import com.jefferson.musicloft.retrofit.response.ResponseCodigoQR;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class CodigoListFragment extends Fragment {
@@ -25,6 +35,8 @@ public class CodigoListFragment extends Fragment {
     RecyclerView recyclerView;
     MyCodigoRecyclerViewAdapter adapter;
     List<ResponseCodigoQR> listaCodigoQR;
+    CodigoQRViewModel codigoQRViewModel;
+
 
     public CodigoListFragment() {
     }
@@ -41,6 +53,9 @@ public class CodigoListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        codigoQRViewModel = ViewModelProviders.of(getActivity())
+                .get(CodigoQRViewModel.class);
 
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
@@ -62,19 +77,30 @@ public class CodigoListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
+            adapter = new MyCodigoRecyclerViewAdapter(getActivity(),listaCodigoQR);
+            recyclerView.setAdapter(adapter);
+
             loadCodigoQRdata();
         }
         return view;
     }
 
+
+
     private void loadCodigoQRdata() {
+
+        codigoQRViewModel.getCodigoQR().observe(getActivity(), new Observer<List<ResponseCodigoQR>>() {
+            @Override
+            public void onChanged(@Nullable List<ResponseCodigoQR> responseCodigoQRS) {
+                listaCodigoQR = responseCodigoQRS;
+                adapter.setData(listaCodigoQR);
+            }
+        });
         adapter = new MyCodigoRecyclerViewAdapter(getActivity(),listaCodigoQR);
         recyclerView.setAdapter(adapter);
+
+
     }
 
 
-    public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
-    }
 }

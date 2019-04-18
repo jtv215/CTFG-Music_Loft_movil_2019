@@ -9,5 +9,14 @@ public class Camarero extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camarero);
+        getSupportActionBar().hide();
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragmentContainerCodigoQR, new CodigoListFragment())
+                .commit();
+
+
+
     }
 }
