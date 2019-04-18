@@ -4,6 +4,7 @@ import com.jefferson.musicloft.retrofit.request.RequestLogin;
 import com.jefferson.musicloft.retrofit.request.RequestSignup;
 import com.jefferson.musicloft.retrofit.response.ResponseAuth;
 import com.jefferson.musicloft.retrofit.response.ResponseCancion;
+import com.jefferson.musicloft.retrofit.response.ResponseLoginEmpleado;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -23,5 +24,7 @@ public interface MusicLoftService {
     @POST("registrarse")
     Call<ResponseAuth> doSignUp(@Body RequestSignup requestSignup);
 
+    @POST("loginEmpleado")
+    Call<ResponseLoginEmpleado> loginEmpleado(@Body RequestLogin requestLogin);
 
 }

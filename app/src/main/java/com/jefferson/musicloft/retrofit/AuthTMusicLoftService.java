@@ -21,8 +21,8 @@ import retrofit2.http.Path;
 public interface AuthTMusicLoftService {
 
 
-    @GET("cargarCanciones")
-    Call<List<ResponseCancion>> cargarCanciones();
+    @GET("cargarCanciones/{idEstablecimiento}")
+    Call<List<ResponseCancion>> cargarCanciones(@Path("idEstablecimiento") String idEstablecimiento);
 
     @GET("votarCancion/{idEstablecimiento}/{idCancion}")
     Call<ResponseCancion> votarCancion(@Path("idEstablecimiento") String idEstablecimiento, @Path("idCancion") String idCancion);

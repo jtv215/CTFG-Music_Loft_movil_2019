@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.jefferson.musicloft.R;
 import com.jefferson.musicloft.common.MyApp;
+import com.jefferson.musicloft.common.SharedPreferencedManager;
 import com.jefferson.musicloft.retrofit.AuthMusicLoftClient;
 import com.jefferson.musicloft.retrofit.AuthTMusicLoftService;
 import com.jefferson.musicloft.retrofit.request.RequestEstablecimiento;
@@ -35,7 +36,7 @@ public class MusicLoftRepository {
     public MusicLoftRepository(){
         authMusicLoftClient = AuthMusicLoftClient.getInstance();
         authTMusicLoftService = authMusicLoftClient.getAuthMusicLoftService();
-        allCanciones = getAllCanciones(); //si se modifica la lista cuando se invoca este metodo **
+        allCanciones = getAllCanciones(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO")); //si se modifica la lista cuando se invoca este metodo **
 
 
 
@@ -43,14 +44,14 @@ public class MusicLoftRepository {
 
 
 
-    public MutableLiveData<List<ResponseCancion >> getAllCanciones(){
+    public MutableLiveData<List<ResponseCancion >> getAllCanciones(String idEstablecimiento){
         //MutableLiveData es una variable que se puede ir modificando en el tiempo
             if(allCanciones == null){
                 allCanciones= new MutableLiveData<>();
             }
 
 
-        Call<List<ResponseCancion>> call = authTMusicLoftService.cargarCanciones();
+        Call<List<ResponseCancion>> call = authTMusicLoftService.cargarCanciones(idEstablecimiento);
         call.enqueue(new Callback<List<ResponseCancion>>() {
             @Override
             public void onResponse(Call<List<ResponseCancion>> call, Response<List<ResponseCancion>> response) {
@@ -88,10 +89,10 @@ public class MusicLoftRepository {
 
                     cantidadSeleccionada.setText(response.body().getCantidadSeleccionada());
                     puntosTotales.setText(response.body().getPrecioTotal());
-                   getAllCanciones();
+                   getAllCanciones(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"));
 
                 }else{
-                    getAllCanciones();
+                    getAllCanciones(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"));
                     Toast.makeText(MyApp.geContext(), "No tienes suficientes puntos", Toast.LENGTH_SHORT).show();
                 }
             }

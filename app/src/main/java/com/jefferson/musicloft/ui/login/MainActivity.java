@@ -9,13 +9,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jefferson.musicloft.Camarero;
 import com.jefferson.musicloft.R;
+import com.jefferson.musicloft.SeleccionarEstablecimiento;
 import com.jefferson.musicloft.common.Constantes;
 import com.jefferson.musicloft.common.SharedPreferencedManager;
 import com.jefferson.musicloft.retrofit.MusicLoftClient;
 import com.jefferson.musicloft.retrofit.MusicLoftService;
 import com.jefferson.musicloft.retrofit.request.RequestLogin;
 import com.jefferson.musicloft.retrofit.response.ResponseAuth;
+import com.jefferson.musicloft.retrofit.response.ResponseLoginEmpleado;
 import com.jefferson.musicloft.ui.DashboardActivity;
 
 import retrofit2.Call;
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText etEmail, etPassword;
     MusicLoftClient musicLoftClient;
     MusicLoftService musicLoftService;
+     String email= "";
+     String password = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +83,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void goToLogin() {
-        final String email= etEmail.getText().toString();
-        final String password= etPassword.getText().toString();
+        email= etEmail.getText().toString();
+        password= etPassword.getText().toString();
 
         if(email.isEmpty()){
             etEmail.setError("El email es requerido");
@@ -114,14 +119,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             SharedPreferencedManager.setSomeStringValue(Constantes.PREF_SEXO,response.body().getSexo());
 
 
-                            Intent i = new Intent(MainActivity.this, DashboardActivity.class);
-                            String hola= response.headers().toString();
+                            Intent i = new Intent(MainActivity.this, SeleccionarEstablecimiento.class);
                             startActivity(i);
                             //Destruimos este Activity para que no se pueda volver.
                            //finish();
 
                         } else {
-                            Toast.makeText(MainActivity.this, "Correo o Contraseña Incorrecta", Toast.LENGTH_SHORT).show();
+
+                            loginCamarero();
+                            //Toast.makeText(MainActivity.this, "Correo o Contraseña Incorrecta", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -142,6 +148,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent i= new Intent(MainActivity.this,SignUpActivity.class);
         startActivity(i);
         finish();
+    }
+
+    private void loginCamarero() {
+
+        RequestLogin requestLogin = new RequestLogin(email,password);
+
+        Call<ResponseLoginEmpleado> call = musicLoftService.loginEmpleado(requestLogin);
+        call.request().body().toString();
+        call.enqueue(new Callback<ResponseLoginEmpleado>() {
+            @Override
+            public void onResponse(Call<ResponseLoginEmpleado> call, Response<ResponseLoginEmpleado> response) {
+                if(response.isSuccessful()) {
+                    Toast.makeText(MainActivity.this, "Sesion iniciada Correctamente", Toast.LENGTH_SHORT).show();
+
+                    SharedPreferencedManager.setSomeStringValue(Constantes.PREF_ID,response.body().getId());
+                    SharedPreferencedManager.setSomeStringValue(Constantes.PREF_ESTABLECIMIENTO,response.body().getIdLocal());
+                    SharedPreferencedManager.setSomeStringValue(Constantes.PREF_NOMBRE,response.body().getNombre());
+                    SharedPreferencedManager.setSomeStringValue(Constantes.PREF_CORREO,response.body().getCorreo());
+                    SharedPreferencedManager.setSomeStringValue(Constantes.PREF_CONTRASENA,response.body().getContrasena());
+                    SharedPreferencedManager.setSomeStringValue(Constantes.PREF_SEXO,response.body().getSexo());
+                    SharedPreferencedManager.setSomeStringValue(Constantes.PREF_TOKEN,response.headers().get("auth-token"));
+
+
+                    Intent i = new Intent(MainActivity.this, Camarero.class);
+                    startActivity(i);
+                    //Destruimos este Activity para que no se pueda volver.
+                    //finish();
+
+                } else {
+
+                    Toast.makeText(MainActivity.this, "Correo o Contraseña Incorrecta", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseLoginEmpleado> call, Throwable t) {
+                Toast.makeText(MainActivity.this,"Problemas de Conexión, Inténtelo de nuevo",Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 

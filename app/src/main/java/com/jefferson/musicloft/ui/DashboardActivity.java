@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jefferson.musicloft.R;
+import com.jefferson.musicloft.SeleccionarEstablecimiento;
 import com.jefferson.musicloft.common.Constantes;
 import com.jefferson.musicloft.common.MyApp;
 import com.jefferson.musicloft.common.SharedPreferencedManager;
@@ -42,6 +43,12 @@ public class DashboardActivity extends AppCompatActivity {
 
             Fragment f= null;
             switch (item.getItemId()) {
+                case R.id.volverSeleccionarEstablecimiento:
+
+                    Intent intent2 = new Intent (MyApp.geContext(), SeleccionarEstablecimiento.class);
+                    startActivityForResult(intent2, 0);
+                    return  true;
+
                 case R.id.navigation_home:
                     f = new CancionListFragment();
                     getSupportFragmentManager()
@@ -55,6 +62,8 @@ public class DashboardActivity extends AppCompatActivity {
                     Intent intent = new Intent (MyApp.geContext(), CodigoQR.class);
                     startActivityForResult(intent, 0);
                     return  true;
+
+
 
             }
             return false;
@@ -107,10 +116,10 @@ public class DashboardActivity extends AppCompatActivity {
 
         nombreLocal.setText(SharedPreferencedManager.getSomeStringValue("PREF_NOMBRELOCAL"));
     }
-
+/*No se usa
     public void cambiar (String mTextView) {
 
         puntos.setText (mTextView);
     }
-
+*/
 }
