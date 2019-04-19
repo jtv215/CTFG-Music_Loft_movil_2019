@@ -1,17 +1,27 @@
 package com.jefferson.musicloft;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
+import com.jefferson.musicloft.common.MyApp;
 import com.jefferson.musicloft.retrofit.response.ResponseCodigoQR;
 
 
+
 import java.util.List;
+
+
+import static android.support.v4.content.ContextCompat.startActivity;
 
 
 public class MyCodigoRecyclerViewAdapter extends RecyclerView.Adapter<MyCodigoRecyclerViewAdapter.ViewHolder> {
@@ -33,7 +43,7 @@ public class MyCodigoRecyclerViewAdapter extends RecyclerView.Adapter<MyCodigoRe
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
         if(mValues!=null){
 
@@ -48,7 +58,25 @@ public class MyCodigoRecyclerViewAdapter extends RecyclerView.Adapter<MyCodigoRe
             }
         }
 
+
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = holder.mItem.getUrl();
+
+
+                Intent i = new Intent(v.getContext(), MostrarCodigoQR.class);
+                i.putExtra("IMG",url);
+                v.getContext().startActivity(i);
+
+            }
+        });
+
+
     }
+
+
 
     public void setData(List<ResponseCodigoQR> codigoQRS){
         this.mValues = codigoQRS;

@@ -3,8 +3,11 @@ package com.jefferson.musicloft.data;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
+import com.jefferson.musicloft.common.MyApp;
 import com.jefferson.musicloft.retrofit.response.ResponseCodigoQR;
 
 import java.util.List;
@@ -18,6 +21,7 @@ public class CodigoQRViewModel extends AndroidViewModel {
         super(application);
         codigoQRRepository = new CodigoQRRepository();
         codigoQR = codigoQRRepository.getAllCodigoQR();
+
 
 
 

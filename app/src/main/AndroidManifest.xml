@@ -39,7 +39,9 @@
         <activity
             android:name=".SeleccionarEstablecimiento"
             android:exported="true" />
-        <activity android:name=".Camarero"></activity>
+        <activity android:name=".Camarero" />
+        <activity android:name=".MostrarCodigoQR"></activity>
+
     </application>
 
 </manifest>
