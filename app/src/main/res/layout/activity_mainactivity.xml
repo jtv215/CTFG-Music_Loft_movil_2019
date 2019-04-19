@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorMorado"
+    android:background="@drawable/fondodos"
     tools:context=".ui.login.MainActivity">
 
 
@@ -13,7 +13,7 @@
         android:layout_width="293dp"
         android:layout_height="194dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="7dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread_inside"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logosinborde" />
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -29,9 +29,11 @@
         android:layout_height="41dp"
         android:layout_marginTop="20dp"
         android:background="@color/colorBlanco"
+        android:drawableLeft="@drawable/ic_person_black_24dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
+        android:paddingLeft="10dp"
         android:textColor="@android:color/black"
         android:textColorHighlight="@android:color/black"
         android:textColorHint="@android:color/black"
@@ -43,12 +45,14 @@
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="20dp"
         android:background="@color/colorBlanco"
+        android:drawableLeft="@drawable/ic_candado_cerrado"
         android:ems="10"
         android:hint="Contraseña"
         android:inputType="textPassword"
+        android:paddingLeft="10dp"
         android:selectAllOnFocus="false"
         android:textColor="@android:color/black"
         android:textColorHighlight="@android:color/black"
@@ -62,9 +66,8 @@
         android:id="@+id/buttonLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:background="@color/colorGris"
-        android:backgroundTint="@color/colorAmarillo"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/boton_redondo"
         android:text="@string/btn_login"
         android:textColor="@android:color/white"
         android:textColorHighlight="@android:color/black"
@@ -79,16 +82,15 @@
         android:id="@+id/textViewGoSign"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="Si aún no tienes cuenta Registrate aquí"
+        android:text="@string/Registrarse"
         android:textColor="@android:color/white"
         android:textColorHighlight="@android:color/black"
         android:textColorHint="@android:color/black"
         app:layout_constraintEnd_toEndOf="@+id/buttonLogin"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/buttonLogin"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
-        tools:text="Si aún no tienes cuenta Registrate aquí" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
 
 </android.support.constraint.ConstraintLayout>

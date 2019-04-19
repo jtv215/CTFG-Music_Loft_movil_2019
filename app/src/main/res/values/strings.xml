@@ -29,6 +29,7 @@
     <string name="toolbar_title">Inicio</string>
     <string name="toolbar_title_home">Inicio</string>
     <string name="title_activity_seleccionar_local">SeleccionarLocal</string>
+    <string name="Registrarse">Si aún no te tienes cuenta Registrate Aquí</string>
 
 
 </resources>

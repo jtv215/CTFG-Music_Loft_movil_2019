@@ -86,6 +86,8 @@ public class CodigoQR extends AppCompatActivity implements ZXingScannerView.Resu
                 editTextPuntos.getText().toString());
 
         usuLocalViewModel.getPuntosUsuario(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"));
+
+       // (TextView)((Activity)getActivity()).findViewById(R.id.puntosID);
        // usuLocalViewModel.getPuntosUsuario2(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"),tv);
 
 

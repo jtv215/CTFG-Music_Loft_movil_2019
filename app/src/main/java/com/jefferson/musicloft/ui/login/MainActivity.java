@@ -3,6 +3,7 @@ package com.jefferson.musicloft.ui.login;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,7 +52,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvGosignUp = findViewById(R.id.textViewGoSign);
         etEmail= findViewById(R.id.editTextEmail);
         etPassword = findViewById(R.id.editTextPassword);
-    }
+        tvGosignUp.setText(Html.fromHtml("Si aún no te tienes cuenta " + "<font><b>" + "Registrate Aquí" + "</b></font>" ));
+       }
 
     private void retrofitInit() {
         musicLoftClient= MusicLoftClient.getInstance();
