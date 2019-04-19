@@ -39,8 +39,14 @@
         <activity
             android:name=".SeleccionarEstablecimiento"
             android:exported="true" />
-        <activity android:name=".ui.ListaCodigoqr.Camarero" />
-        <activity android:name=".ui.ListaCodigoqr.MostrarCodigoQR"></activity>
+        <activity
+            android:name=".ui.ListaCodigoqr.Camarero"
+            android:exported="true"/>
+        <activity
+            android:name=".ui.ListaCodigoqr.MostrarCodigoQR"
+            android:exported="true">
+
+        </activity>
 
     </application>
 
