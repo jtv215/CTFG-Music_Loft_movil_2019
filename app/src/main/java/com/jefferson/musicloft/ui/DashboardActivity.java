@@ -1,26 +1,25 @@
 package com.jefferson.musicloft.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.jefferson.musicloft.R;
 import com.jefferson.musicloft.SeleccionarEstablecimiento;
-import com.jefferson.musicloft.common.Constantes;
 import com.jefferson.musicloft.common.MyApp;
 import com.jefferson.musicloft.common.SharedPreferencedManager;
 import com.jefferson.musicloft.data.MusicLoftViewModel;
 import com.jefferson.musicloft.data.UsuLocalViewModel;
-import com.jefferson.musicloft.retrofit.response.ResponseMonedas;
+
 import com.jefferson.musicloft.ui.codigoQr.CodigoQR;
 import com.jefferson.musicloft.ui.listaCanciones.CancionListFragment;
 
@@ -30,9 +29,50 @@ public class DashboardActivity extends AppCompatActivity {
     Toolbar toolbar;
     ImageView fotoPerfil;
     MusicLoftViewModel musicLoftViewModel;
-
     UsuLocalViewModel usuLocalViewModel;
 
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_dashboard);
+
+        findViewById();
+        cargarViewModel();
+        cargardatos();
+
+
+    }
+
+    private void findViewById() {
+        toolbar = findViewById(R.id.toolbar);
+        nombreLocal = findViewById(R.id.nombreLocalID);
+        puntos = findViewById(R.id.puntosID);
+        fotoPerfil = findViewById(R.id.fotoPerfilID);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    private void cargarViewModel() {
+        musicLoftViewModel = ViewModelProviders.of(this)
+                .get(MusicLoftViewModel.class);
+        getSupportActionBar().hide();
+        usuLocalViewModel = ViewModelProviders.of(this)
+                .get(UsuLocalViewModel.class);
+    }
+
+
+    private void cargardatos() {
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragmentContainer,new CancionListFragment())
+                .commit();
+
+        nombreLocal.setText(SharedPreferencedManager.getSomeStringValue("PREF_NOMBRELOCAL"));
+        usuLocalViewModel.getPuntosUsuario2(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"),puntos);
+
+    }
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -44,9 +84,7 @@ public class DashboardActivity extends AppCompatActivity {
             Fragment f= null;
             switch (item.getItemId()) {
                 case R.id.volverSeleccionarEstablecimiento:
-
-                    Intent intent2 = new Intent (MyApp.geContext(), SeleccionarEstablecimiento.class);
-                    startActivityForResult(intent2, 0);
+                    cambiarSeleccionarEstablecimiento();
                     return  true;
 
                 case R.id.navigation_home:
@@ -55,71 +93,34 @@ public class DashboardActivity extends AppCompatActivity {
                             .beginTransaction()
                             .replace(R.id.fragmentContainer, f)
                             .commit();
-
                     return true;
+
                 case R.id.codigoqr:
-
-                    Intent intent = new Intent (MyApp.geContext(), CodigoQR.class);
-                    startActivityForResult(intent, 0);
+                    cambiarAddCodigoQR();
                     return  true;
-
-
-
             }
             return false;
         }
     };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
-        musicLoftViewModel = ViewModelProviders.of(this)
-                .get(MusicLoftViewModel.class);
-        getSupportActionBar().hide();
-        usuLocalViewModel = ViewModelProviders.of(this)
-                .get(UsuLocalViewModel.class);
-        //Cuando se tenga la pantalla de seleccionar local:
 
 
 
-        findViewById();
-        cargardatos();
-
-
-
-
+    private void cambiarSeleccionarEstablecimiento() {
+        Intent intent2 = new Intent (MyApp.geContext(), SeleccionarEstablecimiento.class);
+        startActivityForResult(intent2, 0);
     }
 
+    private void cambiarAddCodigoQR() {
+        Intent intent = new Intent (MyApp.geContext(), CodigoQR.class);
+        startActivityForResult(intent, 0);
+        finish();
+    }
+    public TextView getTextView()
+    {
 
-
-    private void findViewById() {
-        toolbar = findViewById(R.id.toolbar);
-        nombreLocal = findViewById(R.id.nombreLocalID);
-        puntos = findViewById(R.id.puntosID);
-        fotoPerfil = findViewById(R.id.fotoPerfilID);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+       // TextView txtView = (TextView)findViewById(R.id.puntosID);
+        return this.puntos;
     }
 
-    private void cargardatos() {
-
-        //llama al cancion listFragment para cargar la lista de canciones
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.fragmentContainer,new CancionListFragment())
-                .commit();
-
-
-        //obtener putnos
-        usuLocalViewModel.getPuntosUsuario2(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"),puntos);
-
-        nombreLocal.setText(SharedPreferencedManager.getSomeStringValue("PREF_NOMBRELOCAL"));
-    }
-/*No se usa
-    public void cambiar (String mTextView) {
-
-        puntos.setText (mTextView);
-    }
-*/
 }

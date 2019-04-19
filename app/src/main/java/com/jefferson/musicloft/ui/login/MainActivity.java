@@ -31,32 +31,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText etEmail, etPassword;
     MusicLoftClient musicLoftClient;
     MusicLoftService musicLoftService;
-     String email= "";
-     String password = "";
+    String email= "";
+    String password = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainactivity);
+
         getSupportActionBar().hide();
-        retrofitInit();
         findViewById();
+        retrofitInit();
         events();
 
+    }
 
+       private void findViewById() {
+        btnLogin = findViewById(R.id.buttonLogin);
+        tvGosignUp = findViewById(R.id.textViewGoSign);
+        etEmail= findViewById(R.id.editTextEmail);
+        etPassword = findViewById(R.id.editTextPassword);
     }
 
     private void retrofitInit() {
         musicLoftClient= MusicLoftClient.getInstance();
         musicLoftService= musicLoftClient.getMusicLoftService();
-    }
-
-
-    private void findViewById() {
-        btnLogin = findViewById(R.id.buttonLogin);
-        tvGosignUp = findViewById(R.id.textViewGoSign);
-        etEmail= findViewById(R.id.editTextEmail);
-        etPassword = findViewById(R.id.editTextPassword);
     }
 
     private void events() {

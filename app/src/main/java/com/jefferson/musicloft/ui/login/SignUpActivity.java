@@ -25,7 +25,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener{
-    //Botonnes que hacen referencia a la interfaz
     Button btnSignUP;
     TextView tvGoLogin;
     EditText etUsername, etEmail,etPassword;

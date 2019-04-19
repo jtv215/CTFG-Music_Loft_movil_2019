@@ -33,6 +33,7 @@ public class UsuLocalRepository {
     public UsuLocalRepository(){
         authMusicLoftClient = AuthMusicLoftClient.getInstance();
         authTMusicLoftService = authMusicLoftClient.getAuthMusicLoftService();
+
     }
 
     //correcto
@@ -46,6 +47,7 @@ public class UsuLocalRepository {
 
                 if(response.isSuccessful()){
                     SharedPreferencedManager.setSomeStringValue(Constantes.PREF_PUNTOS,response.body().getMonedas());
+
                 }else{
                     Toast.makeText(MyApp.geContext(), "No tienes cuenta en el local", Toast.LENGTH_SHORT).show();
                 }

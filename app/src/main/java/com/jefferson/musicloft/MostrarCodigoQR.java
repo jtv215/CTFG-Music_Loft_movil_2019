@@ -27,8 +27,6 @@ public class MostrarCodigoQR extends AppCompatActivity {
     }
 
 
-
-
     private void findViewById() {
         image = findViewById(R.id.imageCodigoQRID);
         btnVolverAtras = findViewById(R.id.btnVolver);
