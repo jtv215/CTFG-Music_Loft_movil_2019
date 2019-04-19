@@ -13,7 +13,7 @@
 
     <item
         android:id="@+id/codigoqr"
-        android:icon="@drawable/ic_add_circle_black_24dp"
+        android:icon="@drawable/ic_codigo_qr"
         android:title="" />
 
 </menu>

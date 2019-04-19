@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/D:/Archivos%20de%20programas_DISCO_D/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/av/ic_fiber_manual_record_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/D:/Archivos%20de%20programas_DISCO_D/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_arrow_drop_down_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -29,8 +29,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_genero" />
-                            <entry key="sourceFile" value="C:\Users\Jefferson T\Downloads\genero.svg" />
+                            <entry key="outputName" value="ic_gorjeo" />
+                            <entry key="sourceFile" value="C:\Users\Jefferson T\Downloads\gorjeo.svg" />
                           </map>
                         </option>
                       </PersistentState>

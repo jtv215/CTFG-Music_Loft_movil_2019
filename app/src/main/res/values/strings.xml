@@ -19,17 +19,11 @@
         <item>Mujer</item>
     </string-array>
 
-    <string-array name="seleccionarLocal">
-        <item>Loca1 1</item>
-        <item>Locl 2</item>
-
-    </string-array>
 
     <string name="title_activity_prueba">Prueba</string>
     <string name="toolbar_title">Inicio</string>
     <string name="toolbar_title_home">Inicio</string>
     <string name="title_activity_seleccionar_local">SeleccionarLocal</string>
     <string name="Registrarse">Si aún no te tienes cuenta Registrate Aquí</string>
-
 
 </resources>

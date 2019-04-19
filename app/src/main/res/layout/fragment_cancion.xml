@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/DtituloCancionID"
-        android:layout_width="241dp"
+        android:layout_width="257dp"
         android:layout_height="22dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
@@ -64,26 +64,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="368dp" />
-
     <Button
         android:id="@+id/votarID"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="83dp"
         android:layout_height="43dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/colorAmarillo"
+        android:background="@drawable/boton_redondo"
         android:text="Votar"
         android:textColor="@color/colorBlanco"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.285" />
 
@@ -100,8 +93,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/logoPersonID"
-        android:layout_width="21dp"
-        android:layout_height="22dp"
+        android:layout_width="17dp"
+        android:layout_height="19dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="12dp"
@@ -122,8 +115,8 @@
 
     <TextView
         android:id="@+id/DartistaID"
-        android:layout_width="148dp"
-        android:layout_height="19dp"
+        android:layout_width="164dp"
+        android:layout_height="18dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
         android:text="Artista"

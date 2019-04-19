@@ -4,7 +4,6 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.widget.Toast;
 
-import com.jefferson.musicloft.MyCodigoRecyclerViewAdapter;
 import com.jefferson.musicloft.common.MyApp;
 import com.jefferson.musicloft.common.SharedPreferencedManager;
 import com.jefferson.musicloft.retrofit.AuthMusicLoftClient;

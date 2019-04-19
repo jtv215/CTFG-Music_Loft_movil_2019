@@ -1,4 +1,4 @@
-package com.jefferson.musicloft.ui.login;
+package com.jefferson.musicloft.ui.inicio;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jefferson.musicloft.Camarero;
+import com.jefferson.musicloft.ui.ListaCodigoqr.Camarero;
 import com.jefferson.musicloft.R;
 import com.jefferson.musicloft.SeleccionarEstablecimiento;
 import com.jefferson.musicloft.common.Constantes;
@@ -20,7 +20,6 @@ import com.jefferson.musicloft.retrofit.MusicLoftService;
 import com.jefferson.musicloft.retrofit.request.RequestLogin;
 import com.jefferson.musicloft.retrofit.response.ResponseAuth;
 import com.jefferson.musicloft.retrofit.response.ResponseLoginEmpleado;
-import com.jefferson.musicloft.ui.DashboardActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;

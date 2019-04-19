@@ -4,7 +4,6 @@
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/toolbar2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_weight="1"
@@ -15,13 +14,13 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/fotoPerfilID"
-            android:layout_width="50dp"
+            android:layout_width="53dp"
             android:layout_height="46dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -32,24 +31,23 @@
 
         <TextView
             android:id="@+id/nombreLocalID"
-            android:layout_width="133dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="52dp"
+            android:layout_width="131dp"
+            android:layout_height="25dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="8dp"
             android:text="@string/toolbar_title_home"
+            android:textAlignment="center"
             android:textColor="@android:color/background_light"
-            android:textSize="24sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/fotoPerfilID"
             app:layout_constraintStart_toEndOf="@+id/fotoPerfilID"
             app:layout_constraintTop_toTopOf="@+id/fotoPerfilID"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.375" />
 
         <TextView
             android:id="@+id/tituloPuntosID"
             android:layout_width="62dp"
-            android:layout_height="27dp"
-            android:layout_marginStart="8dp"
+            android:layout_height="25dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="Puntos"
@@ -59,16 +57,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/nombreLocalID"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.631" />
+            app:layout_constraintVertical_bias="0.38" />
 
         <TextView
             android:id="@+id/puntosID"
-            android:layout_width="44dp"
-            android:layout_height="28dp"
+            android:layout_width="54dp"
+            android:layout_height="25dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="200"
+            android:paddingLeft="5dp"
+            android:text="0"
             android:textColor="@android:color/background_light"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -78,6 +77,18 @@
             app:layout_constraintStart_toEndOf="@+id/tituloPuntosID"
             app:layout_constraintTop_toTopOf="@+id/tituloPuntosID"
             app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/btnSalir"
+            android:layout_width="34dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/puntosID"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/puntosID"
+            app:layout_constraintTop_toTopOf="@+id/puntosID"
+            app:srcCompat="@drawable/ic_salir_opcion" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.Toolbar>

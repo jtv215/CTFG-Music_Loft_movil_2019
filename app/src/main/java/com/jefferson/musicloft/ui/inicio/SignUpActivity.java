@@ -1,4 +1,4 @@
-package com.jefferson.musicloft.ui.login;
+package com.jefferson.musicloft.ui.inicio;
 
 import android.content.Intent;
 import android.graphics.Color;

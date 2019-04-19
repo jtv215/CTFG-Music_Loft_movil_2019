@@ -10,9 +10,14 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.jefferson.musicloft.R;
 import com.jefferson.musicloft.SeleccionarEstablecimiento;
 import com.jefferson.musicloft.common.MyApp;
@@ -21,17 +26,18 @@ import com.jefferson.musicloft.data.MusicLoftViewModel;
 import com.jefferson.musicloft.data.UsuLocalViewModel;
 
 import com.jefferson.musicloft.ui.codigoQr.CodigoQR;
+import com.jefferson.musicloft.ui.inicio.MainActivity;
 import com.jefferson.musicloft.ui.listaCanciones.CancionListFragment;
 
 public class DashboardActivity extends AppCompatActivity {
 
     TextView nombreLocal,puntos;
     Toolbar toolbar;
-    ImageView fotoPerfil;
+    ImageView fotoPerfil,salir;
     MusicLoftViewModel musicLoftViewModel;
     UsuLocalViewModel usuLocalViewModel;
 
-
+    private Toolbar mTopToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +47,10 @@ public class DashboardActivity extends AppCompatActivity {
         cargarViewModel();
         cargardatos();
 
-
     }
+
+
+
 
     private void findViewById() {
         toolbar = findViewById(R.id.toolbar);
@@ -51,6 +59,15 @@ public class DashboardActivity extends AppCompatActivity {
         fotoPerfil = findViewById(R.id.fotoPerfilID);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        salir = findViewById(R.id.btnSalir);
+        salir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DashboardActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
     }
 
     private void cargarViewModel() {

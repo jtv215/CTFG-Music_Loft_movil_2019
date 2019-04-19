@@ -59,7 +59,7 @@ public class MusicLoftRepository {
                     allCanciones.setValue(response.body());
 
                 }else{
-                    Toast.makeText(MyApp.geContext(), "Algo va mal no se ha cargado la lista", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyApp.geContext(), "El local no tiene canciones", Toast.LENGTH_SHORT).show();
                 }
             }
 

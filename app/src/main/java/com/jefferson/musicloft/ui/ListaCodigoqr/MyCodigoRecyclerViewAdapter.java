@@ -1,4 +1,4 @@
-package com.jefferson.musicloft;
+package com.jefferson.musicloft.ui.ListaCodigoqr;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+import com.jefferson.musicloft.R;
 import com.jefferson.musicloft.retrofit.response.ResponseCodigoQR;
 
 
