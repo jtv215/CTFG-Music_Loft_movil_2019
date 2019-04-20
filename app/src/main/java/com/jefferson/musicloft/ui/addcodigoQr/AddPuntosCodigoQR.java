@@ -41,7 +41,7 @@ public class AddPuntosCodigoQR extends AppCompatActivity implements ZXingScanner
         findViewById();
         cargarModelView();
         onclick();
-        ocultarbotones();
+       // ocultarbotones();
         mScannerView = new ZXingScannerView(MyApp.geContext());
         setContentView(mScannerView);
          mScannerView.setResultHandler(this);

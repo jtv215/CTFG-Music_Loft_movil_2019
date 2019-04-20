@@ -2,6 +2,7 @@ package com.jefferson.musicloft.ui.listaCanciones;
 
 import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -102,13 +103,22 @@ public class VotarCancionDialogFragment extends DialogFragment {
        musicLoftViewModel.votarCancion(idLocal2,idCancion2,cantidadSeleccionada,puntosTotales);
 
        //LLAMAS Al textview de otra activity
-        //TextView puntos= (TextView)((Activity)getActivity()).findViewById(R.id.puntosID);
-        usuLocalViewModel.getPuntosUsuario2(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"),
+        TextView puntos= (TextView)((Activity)getActivity()).findViewById(R.id.puntosID);
+        String valorpuntos =((TextView)((Activity)getActivity()).findViewById(R.id.puntosID)).getText().toString();
+        int n= Integer.parseInt(valorpuntos);
+        int valorCancion= Integer.parseInt(precio.getText().toString());
+
+        int resta= n-valorCancion;
+        String solucion = String.valueOf(resta);
+        puntos.setText(solucion);
+
+     /*   funciona pero al segundo click
+       usuLocalViewModel.getPuntosUsuario2(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"),
                 (TextView)((Activity)getActivity()).findViewById(R.id.puntosID)
                 );
 
 
-
+*/
 
 
 
