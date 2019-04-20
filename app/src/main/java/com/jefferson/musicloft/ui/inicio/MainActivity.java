@@ -10,9 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jefferson.musicloft.ui.ListaCodigoqr.Camarero;
+import com.jefferson.musicloft.ui.listaCodigoqr.Camarero;
 import com.jefferson.musicloft.R;
-import com.jefferson.musicloft.SeleccionarEstablecimiento;
+import com.jefferson.musicloft.ui.principal.SeleccionarEstablecimiento;
 import com.jefferson.musicloft.common.Constantes;
 import com.jefferson.musicloft.common.SharedPreferencedManager;
 import com.jefferson.musicloft.retrofit.MusicLoftClient;

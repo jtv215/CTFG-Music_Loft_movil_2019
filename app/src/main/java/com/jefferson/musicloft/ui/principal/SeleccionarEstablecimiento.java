@@ -1,13 +1,8 @@
-package com.jefferson.musicloft;
+package com.jefferson.musicloft.ui.principal;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,25 +11,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.jefferson.musicloft.R;
 import com.jefferson.musicloft.common.Constantes;
 import com.jefferson.musicloft.common.MyApp;
 import com.jefferson.musicloft.common.SharedPreferencedManager;
 import com.jefferson.musicloft.retrofit.AuthMusicLoftClient;
 import com.jefferson.musicloft.retrofit.AuthTMusicLoftService;
-import com.jefferson.musicloft.retrofit.response.EstablecimientoRespuesta;
-import com.jefferson.musicloft.retrofit.response.ResponseCancion;
 import com.jefferson.musicloft.retrofit.response.ResponseEstablecimiento;
-import com.jefferson.musicloft.ui.DashboardActivity;
-import com.jefferson.musicloft.ui.codigoQr.CodigoQR;
+import com.jefferson.musicloft.ui.principal.DashboardActivity;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;

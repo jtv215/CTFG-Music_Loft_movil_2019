@@ -19,7 +19,6 @@ import com.jefferson.musicloft.common.MyApp;
 import com.jefferson.musicloft.common.SharedPreferencedManager;
 import com.jefferson.musicloft.data.MusicLoftViewModel;
 import com.jefferson.musicloft.data.UsuLocalViewModel;
-import com.jefferson.musicloft.ui.DashboardActivity;
 
 
 public class VotarCancionDialogFragment extends DialogFragment {

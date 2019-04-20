@@ -1,4 +1,4 @@
-package com.jefferson.musicloft.ui.ListaCodigoqr;
+package com.jefferson.musicloft.ui.listaCodigoqr;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;

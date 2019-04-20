@@ -34,6 +34,7 @@ public class UsuLocalViewModel extends AndroidViewModel {
          usuLocalRepository.getPuntosUsuario(idEstablecimiento);
     }
 
+
     public void  getPuntosUsuario2(String idEstablecimiento, final TextView puntos){
         usuLocalRepository.getPuntosUsuario2(idEstablecimiento,puntos);
     }

@@ -8,5 +8,5 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondocamarero1"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".ui.ListaCodigoqr.CodigoListFragment"
+    tools:context=".ui.listaCodigoqr.CodigoListFragment"
     tools:listitem="@layout/fragment_codigo" />

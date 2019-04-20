@@ -62,6 +62,7 @@ public class UsuLocalRepository {
 
     }
 
+
     public void getPuntosUsuario2(String idEstablecimiento, final TextView puntos){
 
         Call<ResponseMonedas> call = authTMusicLoftService.getPuntosUsuario(idEstablecimiento);

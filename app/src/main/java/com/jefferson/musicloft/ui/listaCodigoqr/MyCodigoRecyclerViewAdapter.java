@@ -1,4 +1,4 @@
-package com.jefferson.musicloft.ui.ListaCodigoqr;
+package com.jefferson.musicloft.ui.listaCodigoqr;
 
 import android.content.Context;
 import android.content.Intent;

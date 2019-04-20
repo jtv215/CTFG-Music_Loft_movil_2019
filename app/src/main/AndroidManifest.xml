@@ -30,20 +30,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.DashboardActivity"
+            android:name=".ui.principal.DashboardActivity"
             android:exported="true"
             android:label="@string/title_activity_dashboard" />
         <activity
-            android:name=".ui.codigoQr.CodigoQR"
+            android:name=".ui.addcodigoQr.AddPuntosCodigoQR"
             android:exported="true" />
         <activity
-            android:name=".SeleccionarEstablecimiento"
+            android:name=".ui.principal.SeleccionarEstablecimiento"
             android:exported="true" />
         <activity
-            android:name=".ui.ListaCodigoqr.Camarero"
+            android:name=".ui.listaCodigoqr.Camarero"
             android:exported="true"/>
         <activity
-            android:name=".ui.ListaCodigoqr.MostrarCodigoQR"
+            android:name=".ui.listaCodigoqr.MostrarCodigoQR"
             android:exported="true">
 
         </activity>

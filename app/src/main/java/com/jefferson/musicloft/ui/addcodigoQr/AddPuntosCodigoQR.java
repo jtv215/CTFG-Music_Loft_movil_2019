@@ -1,9 +1,7 @@
-package com.jefferson.musicloft.ui.codigoQr;
+package com.jefferson.musicloft.ui.addcodigoQr;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -20,16 +18,18 @@ import com.jefferson.musicloft.R;
 import com.jefferson.musicloft.common.MyApp;
 import com.jefferson.musicloft.common.SharedPreferencedManager;
 import com.jefferson.musicloft.data.UsuLocalViewModel;
-import com.jefferson.musicloft.ui.DashboardActivity;
+import com.jefferson.musicloft.ui.principal.DashboardActivity;
+import com.jefferson.musicloft.ui.principal.LiveDataUserViewModel;
+
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-public class CodigoQR extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+public class AddPuntosCodigoQR extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     private ZXingScannerView mScannerView;
     EditText editTextPuntos;
     Button btnEnviar, btnEscanear;
     UsuLocalViewModel usuLocalViewModel;
-
+    LiveDataUserViewModel liveDataUserViewModel;
 
 
     @Override
@@ -41,7 +41,18 @@ public class CodigoQR extends AppCompatActivity implements ZXingScannerView.Resu
         findViewById();
         cargarModelView();
         onclick();
+        ocultarbotones();
+        mScannerView = new ZXingScannerView(MyApp.geContext());
+        setContentView(mScannerView);
+         mScannerView.setResultHandler(this);
+        mScannerView.startCamera();
 
+    }
+
+    private void ocultarbotones() {
+        editTextPuntos.setVisibility(View.INVISIBLE);
+        btnEnviar.setVisibility(View.INVISIBLE);
+        btnEscanear.setVisibility(View.INVISIBLE);
 
     }
 
@@ -51,6 +62,7 @@ public class CodigoQR extends AppCompatActivity implements ZXingScannerView.Resu
         btnEscanear = findViewById(R.id.btnEscanear);
 
     }
+
 
     private void cargarModelView() {
         usuLocalViewModel = ViewModelProviders.of(this)
@@ -73,7 +85,7 @@ public class CodigoQR extends AppCompatActivity implements ZXingScannerView.Resu
             public void onClick(View v) {
                 mScannerView = new ZXingScannerView(MyApp.geContext());
                 setContentView(mScannerView);
-              //  mScannerView.setResultHandler(this);
+              // mScannerView.setResultHandler(this);
                 mScannerView.startCamera();
             }
         });
@@ -82,21 +94,30 @@ public class CodigoQR extends AppCompatActivity implements ZXingScannerView.Resu
 
 
     private void addNuevosPuntosyActualizar() {
+
+
+        liveDataUserViewModel = ViewModelProviders.of(this).get(LiveDataUserViewModel.class);
+
+
+        //*Funciona a medias
         usuLocalViewModel.addPuntos(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"),
                 editTextPuntos.getText().toString());
 
         usuLocalViewModel.getPuntosUsuario(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"));
 
-       // (TextView)((Activity)getActivity()).findViewById(R.id.puntosID);
-       // usuLocalViewModel.getPuntosUsuario2(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"),tv);
 
+
+       // (TextView)((Activity)getActivity()).findViewById(R.id.puntosID);
+        //usuLocalViewModel.getPuntosUsuario2(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"),textViewPuntos);
 
     }
 
+
+
     private void volverAtras() {
-        Intent intent = new Intent (MyApp.geContext(), DashboardActivity.class);
+        Intent intent = new Intent (AddPuntosCodigoQR.this, DashboardActivity.class);
         startActivity(intent);
-        //onBackPressed();
+
     }
 
 

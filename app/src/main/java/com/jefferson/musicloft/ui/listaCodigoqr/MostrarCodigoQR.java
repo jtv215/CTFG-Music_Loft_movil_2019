@@ -1,4 +1,4 @@
-package com.jefferson.musicloft.ui.ListaCodigoqr;
+package com.jefferson.musicloft.ui.listaCodigoqr;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jefferson.musicloft.R;
-import com.jefferson.musicloft.common.SharedPreferencedManager;
 import com.jefferson.musicloft.ui.inicio.MainActivity;
 
 public class MostrarCodigoQR extends AppCompatActivity {
