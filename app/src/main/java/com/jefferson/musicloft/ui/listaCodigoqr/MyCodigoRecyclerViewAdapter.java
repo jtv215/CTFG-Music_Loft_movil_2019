@@ -21,6 +21,7 @@ public class MyCodigoRecyclerViewAdapter extends RecyclerView.Adapter<MyCodigoRe
     private List<ResponseCodigoQR> mValues;
     private Context ctx;
 
+
     public MyCodigoRecyclerViewAdapter(Context context,List<ResponseCodigoQR> items) {
         mValues = items;
         ctx = context;
@@ -39,20 +40,24 @@ public class MyCodigoRecyclerViewAdapter extends RecyclerView.Adapter<MyCodigoRe
         if(mValues!=null){
         holder.mItem = mValues.get(position);
         holder.textPuntos.setText(holder.mItem.getPrecio()+" Puntos");
+
         String foto = holder.mItem.getUrl();
-            if(!foto.equals("")){
+
+           /* if(!foto.equals("")){
                 Glide.with(ctx)
                         .load(foto)
                         .into(holder.imagenQR);
-            }
+            }*/
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String url = holder.mItem.getUrl();
+
                 Intent i = new Intent(v.getContext(), MostrarCodigoQR.class);
-                i.putExtra("IMG",url);
+                i.putExtra("idcodigoQR",holder.mItem.getId());
+                i.putExtra("puntos",holder.mItem.getPrecio());
                 v.getContext().startActivity(i);
 
             }

@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Intent i = new Intent(MainActivity.this, SeleccionarEstablecimiento.class);
                             startActivity(i);
                             //Destruimos este Activity para que no se pueda volver.
-                           //finish();
+                           finish();
 
                         } else {
 

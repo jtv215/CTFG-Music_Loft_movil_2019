@@ -82,7 +82,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         etUsername =findViewById(R.id.editTextUsername);
         etEmail = findViewById(R.id.editTextEmail);
         etPassword = findViewById(R.id.editTextPassword);
-        tvGoLogin.setText(Html.fromHtml("Si ya dispones de una cuenta" + "<font><b>" + "Inicia Sesión Aquí" + "</b></font>" ));
+        tvGoLogin.setText(Html.fromHtml("Si ya dispones de una cuenta " + "<font><b>" + "Inicia Sesión Aquí" + "</b></font>" ));
 
 
 

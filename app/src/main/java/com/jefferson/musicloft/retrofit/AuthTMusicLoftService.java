@@ -39,4 +39,7 @@ public interface AuthTMusicLoftService {
 
     @GET("cargarlistaCodigoQR/{idEstablecimiento}")
     Call<List<ResponseCodigoQR>> cargarlistaCodigoQR(@Path("idEstablecimiento") String idEstablecimiento);
+
+    @GET("actualizarCodigoQR/{idCodigoQR}/{codigoQr}")
+    Call<ResponseCodigoQR> actualizarCodigoQR(@Path("idCodigoQR") String idCodigoQR,@Path("codigoQr") String codigoQr);
 }

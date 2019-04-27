@@ -108,9 +108,15 @@ public class VotarCancionDialogFragment extends DialogFragment {
         int n= Integer.parseInt(valorpuntos);
         int valorCancion= Integer.parseInt(precio.getText().toString());
 
-        int resta= n-valorCancion;
-        String solucion = String.valueOf(resta);
-        puntos.setText(solucion);
+        if(n<valorCancion){
+
+        }else {
+
+
+            int resta = n - valorCancion;
+            String solucion = String.valueOf(resta);
+            puntos.setText(solucion);
+        }
 
      /*   funciona pero al segundo click
        usuLocalViewModel.getPuntosUsuario2(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"),
