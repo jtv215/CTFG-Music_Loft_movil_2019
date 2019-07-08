@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ import com.jefferson.musicloft.common.SharedPreferencedManager;
 import com.jefferson.musicloft.retrofit.AuthMusicLoftClient;
 import com.jefferson.musicloft.retrofit.AuthTMusicLoftService;
 import com.jefferson.musicloft.retrofit.response.ResponseEstablecimiento;
+import com.jefferson.musicloft.ui.inicio.MainActivity;
 import com.jefferson.musicloft.ui.principal.DashboardActivity;
 
 import java.util.ArrayList;
@@ -38,6 +40,7 @@ public class SeleccionarEstablecimiento extends AppCompatActivity {
 
     Spinner spinner;
     Button btnSiguiente;
+
     TextView txtInformacion;
     int posicion;
 
@@ -54,12 +57,16 @@ public class SeleccionarEstablecimiento extends AppCompatActivity {
         txtInformacion = findViewById((R.id.txtInformacion));
         spinner = (Spinner) findViewById(R.id.spinner2);
 
+
+
         cargarEstablecimientos();
 
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, nombreEstablecimiento);
         adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
+
 
 
 

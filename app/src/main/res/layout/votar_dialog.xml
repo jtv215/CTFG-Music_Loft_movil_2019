@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#5d6b7581">
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="351dp"
-        android:layout_height="261dp"
+        android:layout_width="292dp"
+        android:layout_height="247dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -16,33 +16,28 @@
         android:background="#5d6b7581"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.727"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.497">
+        app:layout_constraintTop_toTopOf="parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/fotoID"
-            android:layout_width="107dp"
-            android:layout_height="90dp"
+            android:layout_width="65dp"
+            android:layout_height="67dp"
             android:layout_centerInParent="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="48dp"
             android:src="@drawable/persona"
             app:civ_border_color="#FF000000"
             app:civ_border_width="2dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
-            app:layout_constraintHorizontal_bias="0.571"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/DtituloCancionID"
-            android:layout_width="209dp"
-            android:layout_height="29dp"
+            android:layout_width="214dp"
+            android:layout_height="48dp"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="48dp"
             android:layout_marginEnd="8dp"
             android:text="Titulo de la cación"
             android:textColor="@android:color/black"
@@ -69,10 +64,9 @@
 
         <Button
             android:id="@+id/DbuttonVotarID"
-            android:layout_width="277dp"
-            android:layout_height="41dp"
+            android:layout_width="242dp"
+            android:layout_height="35dp"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="8dp"
             android:background="@color/colorAmarillo"
@@ -80,9 +74,7 @@
             android:textColor="@color/colorBlanco"
             app:layout_constraintBottom_toTopOf="@+id/guideline6"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline7"
-            app:layout_constraintVertical_bias="0.3" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/precio"
@@ -128,20 +120,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="113dp" />
+            app:layout_constraintGuide_end="219dp" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="272dp" />
+            app:layout_constraintGuide_end="13dp" />
 
         <Button
             android:id="@+id/cerrarID"
-            android:layout_width="89dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="4dp"
+            android:layout_width="97dp"
+            android:layout_height="41dp"
             android:background="@android:color/holo_red_light"
             android:text="Cerrar"
             app:layout_constraintEnd_toEndOf="parent"
@@ -153,13 +144,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="251dp" />
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="174dp" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -178,13 +162,15 @@
             android:id="@+id/DpuntosTotalesID"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
             android:text="1000-P"
             android:textColor="@android:color/holo_green_light"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/fotoID"
             app:layout_constraintTop_toBottomOf="@+id/fotoID" />
     </android.support.constraint.ConstraintLayout>
 

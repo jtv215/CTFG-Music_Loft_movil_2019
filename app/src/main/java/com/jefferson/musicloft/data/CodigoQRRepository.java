@@ -65,13 +65,13 @@ public class CodigoQRRepository {
                 if(response.isSuccessful()){
 
                 }else{
-                    Toast.makeText(MyApp.geContext(), "Algo va mal no se ha cargado la lista", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyApp.geContext(), "Algo va mal no se ha cargado el codigo qr", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseCodigoQR> call, Throwable t) {
-                Toast.makeText(MyApp.geContext(),"Problemas de Conexión, Inténtelo de nuevo",Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(MyApp.geContext(),"Problemas de Conexión, Inténtelo de nuevo",Toast.LENGTH_SHORT).show();
 
             }
         });

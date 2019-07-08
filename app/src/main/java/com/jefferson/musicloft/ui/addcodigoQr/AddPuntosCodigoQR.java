@@ -99,22 +99,15 @@ public class AddPuntosCodigoQR extends AppCompatActivity implements ZXingScanner
 
 
     private void addNuevosPuntosyActualizar() {
-
-
         liveDataUserViewModel = ViewModelProviders.of(this).get(LiveDataUserViewModel.class);
-
-
         //*Funciona a medias
         usuLocalViewModel.addPuntos(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"),
                 editTextPuntos.getText().toString());
 
         usuLocalViewModel.getPuntosUsuario(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"));
 
-
-
        // (TextView)((Activity)getActivity()).findViewById(R.id.puntosID);
         //usuLocalViewModel.getPuntosUsuario2(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"),textViewPuntos);
-
     }
 
 
@@ -122,14 +115,16 @@ public class AddPuntosCodigoQR extends AppCompatActivity implements ZXingScanner
     private void volverAtras() {
         Intent intent = new Intent (AddPuntosCodigoQR.this, DashboardActivity.class);
         startActivity(intent);
-
     }
 
 
     @Override
     public void handleResult(Result result) {
 
-        Log.e("Error",result.getText());
+
+       // Log.e("Error",result.getText());
+        String texto= result.getText();
+        addpuntos(texto);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Resultado de Código");
@@ -146,8 +141,13 @@ public class AddPuntosCodigoQR extends AppCompatActivity implements ZXingScanner
         startActivityForResult(intent, 0);
     }
 
+    private void addpuntos(String texto) {
+        liveDataUserViewModel = ViewModelProviders.of(this).get(LiveDataUserViewModel.class);
 
+        //*Funciona a medias
+        usuLocalViewModel.addPuntos(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"), texto);
 
+    }
 
 
 }

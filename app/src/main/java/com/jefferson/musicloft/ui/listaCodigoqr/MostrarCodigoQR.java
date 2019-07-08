@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.zxing.BarcodeFormat;
@@ -86,6 +87,9 @@ public class MostrarCodigoQR extends AppCompatActivity {
         String idcodigoQR =  b.getString("idcodigoQR");
         String texto = generateRandomText();
 
+        Toast.makeText(MyApp.geContext(), "Se ha generado nuevo código QR", Toast.LENGTH_SHORT).show();
+
+        //llamar a la api
         codigoQRViewModel.actualizarQR(idcodigoQR,texto);
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
@@ -95,6 +99,10 @@ public class MostrarCodigoQR extends AppCompatActivity {
             BarcodeEncoder  barcodeEncoder = new BarcodeEncoder();
             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
             image.setImageBitmap(bitmap);
+
+
+
+
 
         }catch (WriterException e){
             e.printStackTrace();
