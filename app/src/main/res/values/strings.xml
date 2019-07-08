@@ -15,8 +15,8 @@
     <string name="seleccionarLocal">selecciona Local</string>
 
     <string-array name="eligeSexo">
-        <item>Hombre</item>
-        <item>Mujer</item>
+        <item>hombre</item>
+        <item>mujer</item>
     </string-array>
 
 

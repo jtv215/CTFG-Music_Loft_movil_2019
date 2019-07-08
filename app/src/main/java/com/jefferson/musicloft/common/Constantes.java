@@ -5,8 +5,12 @@ import com.jefferson.musicloft.retrofit.response.ResponseEstablecimiento;
 import java.util.List;
 
 public class Constantes {
+    //Ejecutar android studio desde localhost
+    public static final String API_MUISCLOFT_BASE_URL = "http://10.0.2.2/git/tfgUAL/proyectoMusicLoft/api/index.php/";
 
-    public static final String API_MUISCLOFT_BASE_URL = "http://10.0.2.2/api/musicLoft/v1/index.php/";
+    //Ejecutar móvil, compoartiendo el wiffi del portatil
+   // public static final String API_MUISCLOFT_BASE_URL = "http://192.168.137.1/git/tfgUAL/proyectoMusicLoft/api/index.php/";
+
 
     public static final String  PREF_TOKEN = "PREF_TOKEN";
     public static final String  PREF_ID = "PREF_ID";

@@ -42,7 +42,7 @@ public class AddPuntosCodigoQR extends AppCompatActivity implements ZXingScanner
         cargarModelView();
         onclick();
      //  ocultarbotones();
-      // mostrarCodigoqr();
+       mostrarCodigoqr();
 
 
     }
