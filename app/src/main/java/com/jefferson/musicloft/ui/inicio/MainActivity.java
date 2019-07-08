@@ -121,13 +121,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                             Intent i = new Intent(MainActivity.this, SeleccionarEstablecimiento.class);
                             startActivity(i);
-                            //Destruimos este Activity para que no se pueda volver.
                            finish();
 
                         } else {
-
                             loginCamarero();
-                            //Toast.makeText(MainActivity.this, "Correo o Contraseña Incorrecta", Toast.LENGTH_SHORT).show();
                         }
                     }
 

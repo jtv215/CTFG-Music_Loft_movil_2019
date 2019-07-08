@@ -29,7 +29,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     Button btnSignUP;
     TextView tvGoLogin;
     EditText etUsername, etEmail,etPassword;
-    RadioButton radioHombre,radioMujer;
     MusicLoftClient musicLoftClient;
     MusicLoftService musicLoftService;
     String sexo;
@@ -41,12 +40,26 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         getSupportActionBar().hide();
-        retrofitInit();
         findViews();
+        retrofitInit();
         addListenerOnSpinnerItemSelection();
-
         events();
 
+    }
+    private void findViews() {
+        btnSignUP = findViewById(R.id.buttonSignUp);
+        tvGoLogin = findViewById(R.id.textViewGoLogin);
+
+        etUsername =findViewById(R.id.editTextUsername);
+        etEmail = findViewById(R.id.editTextEmail);
+        etPassword = findViewById(R.id.editTextPassword);
+        tvGoLogin.setText(Html.fromHtml("Si ya dispones de una cuenta " + "<font><b>" + "Inicia Sesión Aquí" + "</b></font>" ));
+
+    }
+
+    private void retrofitInit() {
+        musicLoftClient= MusicLoftClient.getInstance();
+        musicLoftService= musicLoftClient.getMusicLoftService();
     }
 
     public void addListenerOnSpinnerItemSelection() {
@@ -58,46 +71,21 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
-
-
-
     }
-
-    private void retrofitInit() {
-        musicLoftClient= MusicLoftClient.getInstance();
-        musicLoftService= musicLoftClient.getMusicLoftService();
-
-    }
-
 
     private void events() {
         btnSignUP.setOnClickListener(this);
         tvGoLogin.setOnClickListener(this);
     }
 
-    private void findViews() {
-        btnSignUP = findViewById(R.id.buttonSignUp);
-        tvGoLogin = findViewById(R.id.textViewGoLogin);
-
-        etUsername =findViewById(R.id.editTextUsername);
-        etEmail = findViewById(R.id.editTextEmail);
-        etPassword = findViewById(R.id.editTextPassword);
-        tvGoLogin.setText(Html.fromHtml("Si ya dispones de una cuenta " + "<font><b>" + "Inicia Sesión Aquí" + "</b></font>" ));
-
-
-
-    }
-
-
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        Toast.makeText(this,"hola"+id,Toast.LENGTH_SHORT);
         switch (id){
             case R.id.buttonSignUp:
                 gotToSignUp();
+                break;
             case R.id.textViewGoLogin:
-                Toast.makeText(this,"hola"+id,Toast.LENGTH_SHORT);
                 goToLogin();
                 break;
 
@@ -130,6 +118,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         } else if (password.isEmpty() || password.length() < 4) {
             etPassword.setError("La contraseña es requerida  y debe tener al menos 4 caracteres");
         } else {
+           // Toast.makeText(this,"hola___"+sexo,Toast.LENGTH_SHORT).show();
             RequestSignup  requestSignup= new RequestSignup(username,email,password,sexo);
             Call<ResponseAuth> call = musicLoftService.doSignUp(requestSignup);
 
@@ -138,13 +127,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 public void onResponse(Call<ResponseAuth> call, Response<ResponseAuth> response) {
                     if(response.isSuccessful()){
                         Toast.makeText(SignUpActivity.this, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show();
-
+                        goToLogin();
                     }else{
-                        Toast.makeText(SignUpActivity.this, "Error, revise los datos", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, "Error, revise los datos, o correo ya existe", Toast.LENGTH_SHORT).show();
                     }
-
-
-
                 }
 
                 @Override
@@ -152,6 +138,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     Toast.makeText(SignUpActivity.this,"Problemas de Conexión, Inténtelo de nuevo",Toast.LENGTH_SHORT).show();
                 }
             });
+
         }
 
     }
