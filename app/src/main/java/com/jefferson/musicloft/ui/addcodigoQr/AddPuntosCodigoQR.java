@@ -31,20 +31,16 @@ public class AddPuntosCodigoQR extends AppCompatActivity implements ZXingScanner
     UsuLocalViewModel usuLocalViewModel;
     LiveDataUserViewModel liveDataUserViewModel;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_codigo_qr);
-
         getSupportActionBar().hide();
         findViewById();
         cargarModelView();
         onclick();
      //  ocultarbotones();
        mostrarCodigoqr();
-
-
     }
 
     private void mostrarCodigoqr() {
@@ -54,11 +50,40 @@ public class AddPuntosCodigoQR extends AppCompatActivity implements ZXingScanner
         mScannerView.startCamera();
     }
 
-    private void ocultarbotones() {
-        editTextPuntos.setVisibility(View.INVISIBLE);
-        btnEnviar.setVisibility(View.INVISIBLE);
-        btnEscanear.setVisibility(View.INVISIBLE);
+    @Override
+    public void handleResult(Result result) {
+        String texto= result.getText();
+        addpuntos(texto);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Resultado de Código");
+       // builder.setMessage(result.getText());
+        builder.setMessage("Tus puntos se han añadido Correctamente");
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        //continuar escaneando despues del primer resultado
+       // mScannerView.resumeCameraPreview(this);
+        Intent intent = new Intent (MyApp.geContext(), DashboardActivity.class);
+        startActivityForResult(intent, 0);
+    }
 
+    private void volverAtras() {
+        Intent intent = new Intent (AddPuntosCodigoQR.this, DashboardActivity.class);
+        startActivity(intent);
+    }
+
+    private void addpuntos(String texto) {
+        liveDataUserViewModel = ViewModelProviders.of(this).get(LiveDataUserViewModel.class);
+
+        //*Funciona a medias
+        usuLocalViewModel.addPuntos(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"), texto);
+
+    }
+
+
+
+    private void cargarModelView() {
+        usuLocalViewModel = ViewModelProviders.of(this)
+                .get(UsuLocalViewModel.class);
     }
 
     private void findViewById() {
@@ -67,12 +92,14 @@ public class AddPuntosCodigoQR extends AppCompatActivity implements ZXingScanner
         btnEscanear = findViewById(R.id.btnEscanear);
 
     }
+    private void ocultarbotones() {
+        editTextPuntos.setVisibility(View.INVISIBLE);
+        btnEnviar.setVisibility(View.INVISIBLE);
+        btnEscanear.setVisibility(View.INVISIBLE);
 
-
-    private void cargarModelView() {
-        usuLocalViewModel = ViewModelProviders.of(this)
-                .get(UsuLocalViewModel.class);
     }
+
+
 
     private void onclick() {
 
@@ -90,12 +117,11 @@ public class AddPuntosCodigoQR extends AppCompatActivity implements ZXingScanner
             public void onClick(View v) {
                 mScannerView = new ZXingScannerView(MyApp.geContext());
                 setContentView(mScannerView);
-              // mScannerView.setResultHandler(this);
+                // mScannerView.setResultHandler(this);
                 mScannerView.startCamera();
             }
         });
     }
-
 
 
     private void addNuevosPuntosyActualizar() {
@@ -106,48 +132,7 @@ public class AddPuntosCodigoQR extends AppCompatActivity implements ZXingScanner
 
         usuLocalViewModel.getPuntosUsuario(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"));
 
-       // (TextView)((Activity)getActivity()).findViewById(R.id.puntosID);
+        // (TextView)((Activity)getActivity()).findViewById(R.id.puntosID);
         //usuLocalViewModel.getPuntosUsuario2(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"),textViewPuntos);
     }
-
-
-
-    private void volverAtras() {
-        Intent intent = new Intent (AddPuntosCodigoQR.this, DashboardActivity.class);
-        startActivity(intent);
-    }
-
-
-    @Override
-    public void handleResult(Result result) {
-
-
-       // Log.e("Error",result.getText());
-        String texto= result.getText();
-        addpuntos(texto);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Resultado de Código");
-       // builder.setMessage(result.getText());
-        builder.setMessage("Tus puntos se han añadido Correctamente");
-        AlertDialog alertDialog = builder.create();
-
-        alertDialog.show();
-
-        //continuar escaneando despues del primer resultado
-       // mScannerView.resumeCameraPreview(this);
-
-        Intent intent = new Intent (MyApp.geContext(), DashboardActivity.class);
-        startActivityForResult(intent, 0);
-    }
-
-    private void addpuntos(String texto) {
-        liveDataUserViewModel = ViewModelProviders.of(this).get(LiveDataUserViewModel.class);
-
-        //*Funciona a medias
-        usuLocalViewModel.addPuntos(SharedPreferencedManager.getSomeStringValue("PREF_ESTABLECIMIENTO"), texto);
-
-    }
-
-
 }

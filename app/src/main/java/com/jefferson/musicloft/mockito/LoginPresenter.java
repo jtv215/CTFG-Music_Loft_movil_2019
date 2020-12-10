@@ -12,7 +12,9 @@ public class LoginPresenter implements  Login.Presenter{
     }
     @Override
     public void validaUser(String user, String password) {
-
+        if(view != null){
+            model.validaUser(user,password);
+        }
     }
 
 

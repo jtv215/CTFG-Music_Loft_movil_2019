@@ -1,5 +1,5 @@
 package com.jefferson.musicloft.mockito;
-
+/*
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,8 +9,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
-
+*/
+/*
 @RunWith(MockitoJUnitRunner.class)
 public class LoginPresenterTest {
 
@@ -38,4 +38,4 @@ public class LoginPresenterTest {
         verify(view).error();
     }
 
-}
+}*/

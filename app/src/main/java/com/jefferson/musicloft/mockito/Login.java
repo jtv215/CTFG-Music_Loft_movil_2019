@@ -11,7 +11,7 @@ public interface Login {
     }
 
 
-    interface  Presenter{
+    interface Presenter{
         void validaUser(String user, String password);
         void usuarioValido();
         void error();

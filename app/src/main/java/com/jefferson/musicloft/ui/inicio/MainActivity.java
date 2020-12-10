@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jefferson.musicloft.mockito.Login;
+import com.jefferson.musicloft.mockito.LoginPresenter;
 import com.jefferson.musicloft.ui.listaCodigoqr.Camarero;
 import com.jefferson.musicloft.R;
 import com.jefferson.musicloft.ui.principal.SeleccionarEstablecimiento;
@@ -25,7 +28,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, Login.View {
     Button btnLogin;
     TextView tvGosignUp;
     EditText etEmail, etPassword;
@@ -33,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     MusicLoftService musicLoftService;
     String email= "";
     String password = "";
+
+    private Login.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById();
         retrofitInit();
         events();
+
+        presenter = new LoginPresenter(this);
 
     }
 
@@ -188,4 +196,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    @Override
+    public void usuariovalido() {
+      //  startActivity(new Intent(MainActivity.this,FinalActivity.class));
+    }
+
+    @Override
+    public void error() {
+
+    Log.d("TAG1","Usuario no es válido");
+    }
+
+    @Override
+    public String getUserName() {
+        return etEmail.getText().toString();
+    }
+
+    @Override
+    public String getPassword() {
+        return etPassword.getText().toString();
+    }
 }

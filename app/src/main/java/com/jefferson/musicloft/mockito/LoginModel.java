@@ -12,7 +12,7 @@ public class LoginModel implements Login.Model{
 
     @Override
     public void validaUser(String user, String password) {
-        if(user.equals("camarero") && password.equals("1234")){
+        if(user.equals("jefferson") && password.equals("1234")){
             presenter.usuarioValido();
         }else{
             presenter.error();
